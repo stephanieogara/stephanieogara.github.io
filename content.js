@@ -6,8 +6,8 @@ export const roles = [
     body:"During my Ph.D., I investigated a new drug delivery technique using fluid dynamics, heat transfer, and physics-informed machine learning. Periodic injections in the eye are the cornerstone treatment for several vision-threatening diseases, including wet age-related macular degeneration and diabetic retinopathy, but effectiveness varies and patients often continue to lose their vision. One likely cause for poor treatment outcomes is inefficient delivery: the drug has a limited half-life and may not reach its target in time. I asked whether gentle heating could create a buoyancy differential that moves medicine through the eye more quickly.",
     figuresLabel:'FIGURES',
     figures:[
-      { id:'fa-caltech-video', ratio:'1/1', video:'./assets/caltech-pathlines.mp4', cap:'Two-dimensional particle pathlines, overlaid experiment images' },
-      { id:'fa-caltech-video-3d', ratio:'4/3', w:'640px', video:'./assets/caltech-pathlines-3d.mp4', cap:'Three-dimensional particle pathlines calculated from experimental data' },
+      { id:'fa-caltech-video', ratio:'1/1', w:'340px', video:'./caltech-pathlines.mp4', cap:'Two-dimensional particle pathlines, overlaid experiment images' },
+      { id:'fa-caltech-video-3d', ratio:'4/3', w:'500px', video:'./caltech-pathlines-3d.mp4', cap:'Three-dimensional particle pathlines calculated from experimental data' },
     ],
     projectsLabel:'THREE PARTS OF THE THESIS',
     projects:[
@@ -29,7 +29,7 @@ export const roles = [
     body:"My Fulbright was awarded for lab research in Jakarta, which fell through on arrival. I spent three months in language classes while cold-calling government officials, professors, and NGOs to find a new project. I found that no regional data existed on agricultural waste, despite its importance to Indonesia\u2019s renewable energy targets. I moved to Lombok and collected it myself, interviewing farmers village to village, then analyzed the data, presented the findings at several universities, and submitted a report to the Indonesian government.",
     figuresLabel:'FIELDWORK',
     figures:[
-      { id:'fa-fulbright', side:true, ratio:'3/4', w:'190px', photo:'./assets/fulbright-rice.jpg', alt:'Rice harvest in Lombok', cap:'Rice harvest, Lombok' },
+      { id:'fa-fulbright', side:true, ratio:'3/4', w:'190px', photo:'./fulbright-rice.jpg', alt:'Rice harvest in Lombok', cap:'Rice harvest, Lombok' },
     ] },
 
   { id:'columbia', no:'06', org:'Columbia University', role:'B.S., Mechanical Engineering', period:'2014 to 2016', place:'New York, NY',
@@ -38,7 +38,7 @@ export const roles = [
   { id:'coast-guard', no:'07', org:'U.S. Coast Guard Academy', role:'Cadet', period:'2012 to 2014', place:'New London, CT',
     body:"I started college as a cadet at the United States Coast Guard Academy. Early on, I learned discipline, service, and teamwork.",
     figures:[
-      { id:'fa-coast-guard', side:true, ratio:'3/4', w:'190px', photo:'./assets/coast-guard.jpg', alt:'Aboard a Coast Guard cutter', cap:'Underway' },
+      { id:'fa-coast-guard', side:true, ratio:'3/4', w:'190px', photo:'./coast-guard.jpg', alt:'Aboard a Coast Guard cutter', cap:'Underway' },
     ] },
 ];
 
