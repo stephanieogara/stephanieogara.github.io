@@ -39,7 +39,7 @@
   </nav>
 
   <header id="top" style="position:relative;min-height:100svh;display:flex;flex-direction:column;gap:4px;padding:clamp(74px,10vh,96px) clamp(16px,4vw,40px) clamp(24px,4vh,44px);overflow:hidden">
-    <div style="flex:1 1 auto;min-height:min(62vh,640px);display:flex;flex-direction:column;gap:9px">
+    <div style="flex:1 1 auto;order:0;min-height:min(62vh,640px);display:flex;flex-direction:column;gap:9px">
       <div style="flex:1;min-height:min(50vh,420px);position:relative">
         <canvas ref="{{ canvasRef }}" style="position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:pan-y"></canvas>
         <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:14px;pointer-events:none;padding:clamp(16px,3.5%,34px)">
@@ -49,9 +49,9 @@
           </div>
         </div>
       </div>
-      <p style="margin:0;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#4E4C41">An illustration of buoyancy-driven flow in a closed vessel. Not research data.</p>
     </div>
-    <div style="position:relative;display:flex;flex-direction:column">
+    <p style="margin:0;order:{{ capOrder }};padding-top:{{ capPad }};font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#4E4C41">{{ capText }}</p>
+    <div style="position:relative;order:2;display:flex;flex-direction:column">
       <div style="display:flex;flex-wrap:wrap;gap:clamp(16px,4vw,56px);align-items:flex-start;justify-content:flex-end">
         <div style="flex:1 1 300px;min-width:0;max-width:420px;display:flex;flex-direction:column;gap:2px">
           <label style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:#4E4C41">
@@ -85,7 +85,7 @@
     <div style="max-width:1440px;margin:0 auto">
       <sc-for list="{{ roles }}" as="r" hint-placeholder-count="3">
         <article class="rvl" style="border-top:1px solid rgba(23,22,15,.17);padding:clamp(30px,5vh,58px) 0;display:flex;flex-wrap:wrap;gap:clamp(14px,4vw,64px);align-items:flex-start;opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)">
-          <div style="flex:1 1 110px;display:flex;flex-direction:column;gap:10px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#6A6759">
+          <div style="flex:1 1 {{ r.metaBasis }};display:flex;flex-direction:{{ r.metaDir }};gap:{{ r.metaGap }};font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#6A6759">
             <span>{{ r.period }}</span>
             <span style="color:#6A6759">{{ r.place }}</span>
           </div>
@@ -129,7 +129,9 @@
 
             <sc-if value="{{ r.hasProjects }}" hint-placeholder-val="{{ false }}">
               <div style="margin-top:14px;display:flex;flex-direction:column;gap:2px">
-                <div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#6A6759;padding-bottom:12px">{{ r.projectsLabel }}</div>
+                <sc-if value="{{ showProjLabel }}" hint-placeholder-val="{{ true }}">
+                  <div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#6A6759;padding-bottom:12px">{{ r.projectsLabel }}</div>
+                </sc-if>
                 <sc-for list="{{ r.projects }}" as="p" hint-placeholder-count="3">
                   <div style="border-top:1px solid rgba(23,22,15,.13);padding:18px 0;display:grid;grid-template-columns:52px minmax(0,1fr);gap:clamp(10px,2vw,28px)">
                     <span style="font-size:13.5px;font-weight:500;letter-spacing:.08em;color:#0A4FB8">{{ p.tag }}</span>
@@ -163,7 +165,7 @@
     </div>
   </section>
 
-  <section id="contact" style="position:relative;z-index:2;background:#F1EFE9;border-top:1px solid rgba(23,22,15,.17);padding:clamp(60px,13vh,140px) clamp(16px,4vw,40px) clamp(28px,5vh,48px)">
+  <section id="contact" style="position:relative;z-index:2;background:#F1EFE9;border-top:1px solid rgba(23,22,15,.17);padding:{{ contactPadTop }} clamp(16px,4vw,40px) clamp(28px,5vh,48px)">
     <div style="max-width:1440px;margin:0 auto;display:flex;flex-direction:column;gap:clamp(28px,6vh,60px)">
       <div style="font-family:'Archivo',sans-serif;font-weight:700;font-size:clamp(30px,5.6vw,78px);line-height:.94;letter-spacing:-.035em;color:#17160F;max-width:22ch;text-wrap:balance">Building something hard?<br />Get in touch.</div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:clamp(16px,4vw,48px);border-top:1px solid rgba(23,22,15,.17);padding-top:22px">
@@ -177,7 +179,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;particleCount&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:1500,&quot;min&quot;:300,&quot;max&quot;:4000,&quot;step&quot;:100,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Flow field&quot;},&quot;showFigures&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Layout&quot;}}">
 class Component extends DCLogic {
-  state = { roles: [], pubs: [], src: 1, visc: 0.12, touched: false, scrolled: false, isTouch: false };
+  state = { roles: [], pubs: [], src: 1, visc: 0.12, touched: false, scrolled: false, isTouch: false, narrow: false };
 
   constructor(p) {
     super(p);
@@ -198,6 +200,10 @@ class Component extends DCLogic {
       window.removeEventListener('touchstart', this._onFirstTouch);
     };
     window.addEventListener('touchstart', this._onFirstTouch, { passive: true, once: true });
+    const mq = window.matchMedia('(max-width: 680px)');
+    this._onMq = () => this.setState({ narrow: mq.matches });
+    this._onMq();
+    if (mq.addEventListener) mq.addEventListener('change', this._onMq);
     this._onScroll = () => {
       const s = window.scrollY > 80;
       if (s !== this.state.scrolled) this.setState({ scrolled: s });
@@ -216,6 +222,7 @@ class Component extends DCLogic {
     if (this._onUp) { window.removeEventListener('pointerup', this._onUp); window.removeEventListener('pointercancel', this._onUp); }
     if (this._ro) this._ro.disconnect();
     if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
+    if (this._onMq) { const m = window.matchMedia('(max-width: 680px)'); if (m.removeEventListener) m.removeEventListener('change', this._onMq); }
     if (this._onResize) window.removeEventListener('resize', this._onResize);
   }
 
@@ -282,10 +289,10 @@ class Component extends DCLogic {
       NX = Math.max(30, Math.min(112, Math.round(availW / cell)));
       cell = availW / NX;
       NY = Math.max(14, Math.round(availH / cell));
-      innerW = NX * cell;
-      innerH = NY * cell;
+      innerW = Math.round(NX * cell);
+      innerH = Math.round(NY * cell);
       COUNT = Math.max(600, Math.min(12000, Math.round(DENSITY * NX * NY)));
-      ox = Math.round((w - innerW) / 2);
+      ox = Math.floor((w - innerW) / 2);
       oy = Math.round((h - innerH) / 2);
       cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -525,6 +532,10 @@ class Component extends DCLogic {
       const rest = (r.figures || []).filter(fg => fg !== side);
       return {
       ...r,
+      role: (this.state.narrow && r.roleShort) ? r.roleShort : r.role,
+      metaBasis: this.state.narrow ? '100%' : '110px',
+      metaDir: this.state.narrow ? 'row' : 'column',
+      metaGap: this.state.narrow ? '14px' : '10px',
       hasProjects: r.projects && r.projects.length ? true : false,
       hasFigures: this.props.showFigures === false ? false : (r.figures && r.figures.length ? true : false),
 
@@ -535,6 +546,7 @@ class Component extends DCLogic {
       figures: rest.map(fg => ({ ...fg, isVideo: !!fg.video, isPhoto: !!fg.photo, bgPhoto: fg.photo ? 'url("' + fg.photo + '")' : undefined, isSlot: !fg.video && !fg.photo, maxW: fg.w || '300px' })),
     };
     }).map(r => ({ ...r, hasFigures: r.hasFigures && r.figures.length > 0 }));
+    const n = this.state.narrow;
     const src = this.state.src ?? 1;
     const mag = Math.abs(src);
     const srcLabel = mag <= 0.04 ? 'Off' : (src > 0 ? 'Heat' : 'Cold');
@@ -547,6 +559,15 @@ class Component extends DCLogic {
       canvasRef: this.canvasRef,
       hintOpacity: this.state.touched ? 0 : 1,
       hintText: this.state.isTouch ? 'Tap the fluid to add heat' : 'Drag across the fluid to add heat',
+      capText: n ? 'An illustration of buoyancy-driven flow.' : 'An illustration of buoyancy-driven flow in a closed vessel. Not research data.',
+      capOrder: n ? 3 : 1,
+      capPad: n ? '10px' : '0px',
+      metaDir: n ? 'row' : 'column',
+      metaGap: n ? '14px' : '10px',
+      metaBasis: n ? '100%' : '110px',
+      showProjLabel: !n,
+      pubPadY: n ? 'clamp(30px,5vh,44px)' : 'clamp(56px,11vh,110px)',
+      contactPadTop: n ? 'clamp(34px,6vh,60px)' : 'clamp(60px,13vh,140px)',
       navBg: this.state.scrolled ? 'rgba(10,88,199,.95)' : 'rgba(241,239,233,0)',
       navInk: this.state.scrolled ? '#EAF2FC' : '#17160F',
       navLink: this.state.scrolled ? '#CFE0F6' : '#2A2820',
