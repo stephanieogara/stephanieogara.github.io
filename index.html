@@ -285,15 +285,16 @@ class Component extends DCLogic {
       const inset = 1;
       const availW = Math.max(40, w - inset * 2), availH = Math.max(40, h - inset * 2);
       const rows = availW / availH < 1.6 ? NY_TARGET * 1.35 : NY_TARGET;
-      cell = availH / rows;
-      NX = Math.max(30, Math.min(112, Math.round(availW / cell)));
-      cell = availW / NX;
-      NY = Math.max(14, Math.round(availH / cell));
-      innerW = Math.round(NX * cell);
-      innerH = Math.round(NY * cell);
+      // whole-pixel cells: the fluid domain and the drawn wall then share one
+      // integer grid, so neither side of the vessel is painted over
+      cell = Math.max(4, Math.floor(availH / rows));
+      NX = Math.max(30, Math.min(112, Math.floor(availW / cell)));
+      NY = Math.max(14, Math.floor(availH / cell));
+      innerW = NX * cell;
+      innerH = NY * cell;
       COUNT = Math.max(600, Math.min(12000, Math.round(DENSITY * NX * NY)));
       ox = Math.floor((w - innerW) / 2);
-      oy = Math.round((h - innerH) / 2);
+      oy = Math.floor((h - innerH) / 2);
       cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.fillStyle = '#07080B'; ctx.fillRect(0, 0, w, h);
@@ -560,12 +561,12 @@ class Component extends DCLogic {
       hintOpacity: this.state.touched ? 0 : 1,
       hintText: this.state.isTouch ? 'Tap the fluid to add heat' : 'Drag across the fluid to add heat',
       capText: n ? 'An illustration of buoyancy-driven flow.' : 'An illustration of buoyancy-driven flow in a closed vessel. Not research data.',
-      capOrder: n ? 3 : 1,
-      capPad: n ? '10px' : '0px',
+      capOrder: 1,
+      capPad: '0px',
       metaDir: n ? 'row' : 'column',
       metaGap: n ? '14px' : '10px',
       metaBasis: n ? '100%' : '110px',
-      showProjLabel: !n,
+      showProjLabel: true,
       pubPadY: n ? 'clamp(30px,5vh,44px)' : 'clamp(56px,11vh,110px)',
       contactPadTop: n ? 'clamp(34px,6vh,60px)' : 'clamp(60px,13vh,140px)',
       navBg: this.state.scrolled ? 'rgba(10,88,199,.95)' : 'rgba(241,239,233,0)',
