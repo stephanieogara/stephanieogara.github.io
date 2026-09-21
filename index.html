@@ -37,14 +37,14 @@
     </div>
   </nav>
 
-  <header id="top" style="position:relative;min-height:100svh;display:flex;flex-direction:column;gap:4px;padding:clamp(48px,7vh,68px) clamp(16px,4vw,40px) clamp(24px,4vh,44px);overflow:hidden">
+  <header id="top" style="position:relative;min-height:100svh;display:flex;flex-direction:column;gap:4px;padding:clamp(74px,10vh,96px) clamp(16px,4vw,40px) clamp(24px,4vh,44px);overflow:hidden">
     <div style="flex:1 1 auto;min-height:min(62vh,640px);display:flex;flex-direction:column;gap:9px">
       <div style="flex:1;min-height:min(50vh,420px);position:relative">
         <canvas ref="{{ canvasRef }}" style="position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:pan-y"></canvas>
         <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:14px;pointer-events:none;padding:clamp(16px,3.5%,34px)">
           <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;justify-content:space-between">
             <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(30px,5.6vw,78px);line-height:.94;letter-spacing:-.035em;color:#F4F8FA;text-shadow:0 2px 26px rgba(7,8,11,.86)">Hi, I&#8217;m Stephanie</div>
-            <span style="font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#A8B4BB;background:rgba(7,8,11,.72);padding:7px 12px;border:1px solid rgba(233,238,241,.18);opacity:{{ hintOpacity }};transition:opacity .8s ease">Drag across the fluid to add heat</span>
+            <span style="font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#A8B4BB;background:rgba(7,8,11,.72);padding:7px 12px;border:1px solid rgba(233,238,241,.18);opacity:{{ hintOpacity }};transition:opacity .8s ease">{{ hintText }}</span>
           </div>
         </div>
       </div>
@@ -173,7 +173,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;particleCount&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:1500,&quot;min&quot;:300,&quot;max&quot;:4000,&quot;step&quot;:100,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Flow field&quot;},&quot;showFigures&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Layout&quot;}}">
 class Component extends DCLogic {
-  state = { roles: [], pubs: [], src: 1, visc: 0.12, touched: false, scrolled: false };
+  state = { roles: [], pubs: [], src: 1, visc: 0.12, touched: false, scrolled: false, isTouch: false };
 
   constructor(p) {
     super(p);
@@ -185,6 +185,9 @@ class Component extends DCLogic {
     import('./content.js').then(m => this.setState({ roles: m.roles, pubs: m.pubs }));
     this.startField();
     this.observe();
+    if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(hover: none)').matches) {
+      this.setState({ isTouch: true });
+    }
     this._onScroll = () => {
       const s = window.scrollY > 80;
       if (s !== this.state.scrolled) this.setState({ scrolled: s });
@@ -236,7 +239,7 @@ class Component extends DCLogic {
 
     let u, v, u0, v0, T, T0, p, div, us, vs, parts = [];
     const COUNT = Math.max(200, this.props.particleCount ?? 4200);
-    const ptr = { x: -1e4, y: -1e4, inside: false, px: -1e4, py: -1e4, held: false, touch: false };
+    const ptr = { x: -1e4, y: -1e4, inside: false, px: -1e4, py: -1e4, held: false, touch: false, pulse: 0 };
 
     const IX = (i, j) => i + j * NX;
     const alloc = () => {
@@ -297,6 +300,8 @@ class Component extends DCLogic {
       ptr.y = (e.clientY - r.top - oy * sc) / (cell * sc);
       ptr.px = ptr.x; ptr.py = ptr.y;
       ptr.inside = true; ptr.held = true;
+      ptr.pulse = 3;
+      if (!this.state.touched) this.setState({ touched: true });
     };
     this._onUp = () => { ptr.held = false; if (ptr.touch) ptr.inside = false; };
     cv.addEventListener('pointerdown', this._onDown, { passive: true });
@@ -399,6 +404,11 @@ class Component extends DCLogic {
 
       // pointer as a heat or cold source, with the fluid dragged along by the stroke
       const src = this.state.src ?? 1;
+      if (ptr.pulse > 0 && Math.abs(src) > 0.04) {
+        // a tap lays down a wide, strong patch over a few frames
+        brush(ptr.x, ptr.y, src * 0.3, 5.2);
+        ptr.pulse -= 1;
+      }
       if (ptr.inside && Math.abs(src) > 0.04) {
         brush(ptr.x, ptr.y, src * 0.09, 3.4);
         const dx = ptr.x - ptr.px, dy = ptr.y - ptr.py;
@@ -516,6 +526,7 @@ class Component extends DCLogic {
       rootRef: this.rootRef,
       canvasRef: this.canvasRef,
       hintOpacity: this.state.touched ? 0 : 1,
+      hintText: this.state.isTouch ? 'Tap the fluid to add heat' : 'Drag across the fluid to add heat',
       navBg: this.state.scrolled ? 'rgba(79,179,255,.94)' : 'rgba(16,19,24,0)',
       navInk: this.state.scrolled ? '#062A45' : '#E9EEF1',
       navLink: this.state.scrolled ? '#062A45' : '#C3CDD3',
