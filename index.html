@@ -54,12 +54,12 @@
     <div style="position:relative;display:flex;flex-direction:column">
       <div style="display:flex;flex-wrap:wrap;gap:clamp(16px,4vw,56px);align-items:flex-start;justify-content:flex-end">
         <div style="flex:1 1 300px;min-width:0;max-width:420px;display:flex;flex-direction:column;gap:2px">
-          <label style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:#4E4C41">
+          <label style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:#4E4C41">
             <span style="flex:0 0 88px;white-space:nowrap">Source</span>
             <input type="range" min="-1" max="1" step="0.02" value="{{ src }}" onChange="{{ onSrc }}" onInput="{{ onSrc }}" style="flex:1 1 150px;min-width:140px;background:linear-gradient(90deg,#0A58C7 0%,#A8A496 50%,#C64A1A 100%)" />
             <span style="flex:0 0 82px;text-align:right;white-space:nowrap;color:{{ srcColor }}">{{ srcLabel }}</span>
           </label>
-          <label style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:#4E4C41">
+          <label style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:#4E4C41">
             <span style="flex:0 0 88px;white-space:nowrap">Viscosity</span>
             <input type="range" min="0" max="0.4" step="0.005" value="{{ visc }}" onChange="{{ onVisc }}" onInput="{{ onVisc }}" style="flex:1 1 150px;min-width:140px;background:linear-gradient(90deg,#A8A496 0%,#4E4C41 100%)" />
             <span style="flex:0 0 82px;text-align:right;white-space:nowrap">{{ viscLabel }}</span>
@@ -76,7 +76,7 @@
       </div>
       <div style="flex:1 1 380px;min-width:0;display:flex;flex-direction:column;gap:clamp(16px,2.5vh,26px);align-items:flex-start">
         <p style="margin:0;font-family:'Archivo',sans-serif;font-weight:500;font-size:clamp(22px,3.4vw,46px);line-height:1.2;letter-spacing:-.026em;color:#17160F;max-width:28ch;text-wrap:pretty">I work at the intersection of emerging tech and company creation, currently exploring where physics meets AI.</p>
-        <a href="mailto:stephanieogara1@gmail.com" style="font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#0A4FB8;word-break:break-word">stephanieogara1@gmail.com</a>
+        <a href="mailto:stephanieogara1@gmail.com" style="font-size:13.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:#0A4FB8;word-break:break-word">stephanieogara1@gmail.com</a>
       </div>
     </div>
   </section>
@@ -93,7 +93,7 @@
             <div style="display:flex;flex-wrap:wrap;gap:clamp(16px,2.5vw,30px);align-items:flex-start">
               <div style="flex:999 1 320px;min-width:0;display:flex;flex-direction:column;gap:14px">
                 <h2 style="margin:0;font-family:'Archivo',sans-serif;font-weight:700;font-size:clamp(28px,4.4vw,62px);line-height:.98;letter-spacing:-.035em;color:#17160F">{{ r.org }}</h2>
-                <div style="font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#0A4FB8">{{ r.role }}</div>
+                <div style="font-size:13.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:#0A4FB8">{{ r.role }}</div>
                 <p style="margin:0;font-family:'Source Serif 4',serif;font-size:clamp(15.5px,1.45vw,18px);line-height:1.6;color:#3C3A2E;text-wrap:pretty">{{ r.body }}</p>
               </div>
               <sc-if value="{{ r.hasFiguresRight }}" hint-placeholder-val="{{ false }}">
@@ -101,7 +101,7 @@
                   <div style="position:relative;aspect-ratio:{{ r.rightRatio }};border:1px solid rgba(233,238,241,.18);background:#E4E0D6">
                     <div role="img" aria-label="{{ r.rightAlt }}" style="position:absolute;inset:0;background-image:{{ r.rightBg }};background-size:cover;background-position:center"></div>
                   </div>
-                  <figcaption style="font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:#6A6759">{{ r.rightCap }}</figcaption>
+                  <figcaption style="font-size:12.5px;letter-spacing:.11em;text-transform:uppercase;color:#6A6759">{{ r.rightCap }}</figcaption>
                 </figure>
               </sc-if>
             </div>
@@ -121,7 +121,7 @@
                         <image-slot id="{{ f.id }}" shape="rect" radius="0" fit="cover" placeholder="{{ f.ph }}" style="position:absolute;inset:0"></image-slot>
                       </sc-if>
                     </div>
-                    <figcaption style="font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:#6A6759">{{ f.cap }}</figcaption>
+                    <figcaption style="font-size:12.5px;letter-spacing:.11em;text-transform:uppercase;color:#6A6759">{{ f.cap }}</figcaption>
                   </figure>
                 </sc-for>
               </div>
@@ -129,10 +129,10 @@
 
             <sc-if value="{{ r.hasProjects }}" hint-placeholder-val="{{ false }}">
               <div style="margin-top:14px;display:flex;flex-direction:column;gap:2px">
-                <div style="font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#6A6759;padding-bottom:12px">{{ r.projectsLabel }}</div>
+                <div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#6A6759;padding-bottom:12px">{{ r.projectsLabel }}</div>
                 <sc-for list="{{ r.projects }}" as="p" hint-placeholder-count="3">
                   <div style="border-top:1px solid rgba(23,22,15,.13);padding:18px 0;display:grid;grid-template-columns:52px minmax(0,1fr);gap:clamp(10px,2vw,28px)">
-                    <span style="font-size:12px;font-weight:500;letter-spacing:.09em;color:#0A4FB8">{{ p.tag }}</span>
+                    <span style="font-size:13.5px;font-weight:500;letter-spacing:.08em;color:#0A4FB8">{{ p.tag }}</span>
                     <div style="display:flex;flex-direction:column;gap:8px;min-width:0">
                       <h3 style="margin:0;font-family:'Archivo',sans-serif;font-weight:700;font-size:clamp(15px,1.5vw,19px);line-height:1.25;letter-spacing:-.01em;color:#1C1A13">{{ p.title }}</h3>
                       <p style="margin:0;font-family:'Source Serif 4',serif;font-size:15.5px;line-height:1.6;color:#4E4C41;text-wrap:pretty">{{ p.body }}</p>
@@ -156,7 +156,7 @@
         <sc-for list="{{ pubs }}" as="p" hint-placeholder-count="4">
           <a href="{{ p.href }}" target="{{ p.target }}" rel="noopener" style="border-bottom:1px solid rgba(23,22,15,.15);padding:clamp(20px,3vh,30px) 0;display:flex;flex-direction:column;gap:9px;color:#1C1A13" style-hover="background:rgba(10,88,199,.07)">
             <span style="font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:clamp(14px,1.35vw,17px);line-height:1.42;text-wrap:pretty">{{ p.title }}</span>
-            <span style="font-size:11.5px;line-height:1.6;color:#6A6759">{{ p.venue }}</span>
+            <span style="font-size:12.5px;line-height:1.6;color:#6A6759">{{ p.venue }}</span>
           </a>
         </sc-for>
       </div>
