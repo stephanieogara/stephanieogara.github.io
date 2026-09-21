@@ -15,32 +15,32 @@
   <script src="./image-slot.js"></script>
   <style>
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;background:#101318;color:#E9EEF1;-webkit-font-smoothing:antialiased}
-    a{color:#48D6C4;text-decoration:none}
-    a:hover{color:#FF8A5B}
-    ::selection{background:#FF8A5B;color:#07080B}
+    html{scroll-behavior:smooth;overscroll-behavior-y:none}
+    body{margin:0;background:#101318;color:#E9EEF1;-webkit-font-smoothing:antialiased;overscroll-behavior-y:none}
+    a{color:#4FB3FF;text-decoration:none}
+    a:hover{color:#9BD2FF}
+    ::selection{background:#4FB3FF;color:#07080B}
     input[type=range]{-webkit-appearance:none;appearance:none;height:22px;padding:8px 0;background-clip:content-box;background-repeat:no-repeat;border-radius:3px;outline:none;touch-action:none}
-    input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#F4F8FA;border:none;box-shadow:0 0 0 2px #101318;cursor:pointer}
-    input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:#F4F8FA;border:none;box-shadow:0 0 0 2px #101318;cursor:pointer}
+    input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#F4F8FA;border:none;box-shadow:0 0 0 2px #07080B;cursor:pointer}
+    input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:#F4F8FA;border:none;box-shadow:0 0 0 2px #07080B;cursor:pointer}
   </style>
 </helmet>
 
 <div ref="{{ rootRef }}" style="font-family:'IBM Plex Mono',monospace;background:#101318;min-height:100vh;overflow-x:hidden">
 
-  <nav style="position:fixed;top:0;left:0;right:0;z-index:30;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px clamp(16px,4vw,40px);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#7E8A93;mix-blend-mode:difference">
-    <a href="#top" style="font-size:13.5px;letter-spacing:.11em;color:#E9EEF1">Stephanie O’Gara</a>
+  <nav style="position:fixed;top:0;left:0;right:0;z-index:30;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px clamp(16px,4vw,40px);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:{{ navInk }};background:{{ navBg }};backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid {{ navRule }};transition:background .35s ease,color .35s ease,border-color .35s ease">
+    <a href="#top" style="font-size:13.5px;letter-spacing:.11em;color:{{ navInk }};transition:color .35s ease">Stephanie O’Gara</a>
     <div style="display:flex;gap:clamp(12px,2.5vw,28px);font-size:12px">
-      <a href="#work" style="color:#C3CDD3">Work</a>
-      <a href="#writing" style="color:#C3CDD3">Publications</a>
-      <a href="#contact" style="color:#C3CDD3">Contact</a>
+      <a href="#work" style="color:{{ navLink }};transition:color .35s ease">Work</a>
+      <a href="#writing" style="color:{{ navLink }};transition:color .35s ease">Publications</a>
+      <a href="#contact" style="color:{{ navLink }};transition:color .35s ease">Contact</a>
     </div>
   </nav>
 
   <header id="top" style="position:relative;min-height:100svh;display:flex;flex-direction:column;gap:4px;padding:clamp(48px,7vh,68px) clamp(16px,4vw,40px) clamp(24px,4vh,44px);overflow:hidden">
     <div style="flex:1 1 auto;min-height:min(62vh,640px);display:flex;flex-direction:column;gap:9px">
       <div style="flex:1;min-height:min(50vh,420px);position:relative">
-        <canvas ref="{{ canvasRef }}" style="position:absolute;inset:0;width:100%;height:100%;display:block"></canvas>
+        <canvas ref="{{ canvasRef }}" style="position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:pan-y"></canvas>
         <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:14px;pointer-events:none;padding:clamp(16px,3.5%,34px)">
           <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;justify-content:space-between">
             <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(30px,5.6vw,78px);line-height:.94;letter-spacing:-.035em;color:#F4F8FA;text-shadow:0 2px 26px rgba(7,8,11,.86)">Hi, I&#8217;m Stephanie</div>
@@ -50,7 +50,7 @@
       </div>
       <p style="margin:0;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#A8B4BB">An illustration of buoyancy-driven flow in a closed vessel.<br />Not research data.</p>
     </div>
-    <div style="position:relative;display:flex;flex-direction:column;margin-top:-12px">
+    <div style="position:relative;display:flex;flex-direction:column">
       <div style="display:flex;flex-wrap:wrap;gap:clamp(16px,4vw,56px);align-items:flex-start;justify-content:flex-end">
         <div style="flex:1 1 300px;min-width:0;max-width:420px;display:flex;flex-direction:column;gap:2px">
           <label style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:#A8B4BB">
@@ -86,12 +86,14 @@
             <span style="color:#7E8A93">{{ r.place }}</span>
           </div>
           <div style="flex:999 1 320px;min-width:0;display:flex;flex-direction:column;gap:14px">
-            <h2 style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(28px,4.4vw,62px);line-height:.98;letter-spacing:-.035em;color:#F4F8FA">{{ r.org }}</h2>
-            <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#48D6C4">{{ r.role }}</div>
-            <div style="display:flex;flex-wrap:{{ r.figWrap }};gap:clamp(16px,2.5vw,30px);align-items:flex-start">
-              <p style="margin:0;flex:1 1 320px;min-width:0;font-size:clamp(13.5px,1.25vw,16px);line-height:1.7;color:#B4BEC5;text-wrap:pretty">{{ r.body }}</p>
+            <div style="display:flex;flex-wrap:wrap;gap:clamp(16px,2.5vw,30px);align-items:flex-start">
+              <div style="flex:999 1 320px;min-width:0;display:flex;flex-direction:column;gap:14px">
+                <h2 style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(28px,4.4vw,62px);line-height:.98;letter-spacing:-.035em;color:#F4F8FA">{{ r.org }}</h2>
+                <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#4FB3FF">{{ r.role }}</div>
+                <p style="margin:0;font-size:clamp(13.5px,1.25vw,16px);line-height:1.7;color:#B4BEC5;text-wrap:pretty">{{ r.body }}</p>
+              </div>
               <sc-if value="{{ r.hasFiguresRight }}" hint-placeholder-val="{{ false }}">
-                <figure style="margin:0;flex:0 0 auto;width:{{ r.rightW }};margin-top:{{ r.figLift }};display:flex;flex-direction:column;gap:9px">
+                <figure style="margin:0;flex:0 1 auto;width:{{ r.rightW }};max-width:100%;display:flex;flex-direction:column;gap:9px">
                   <div style="position:relative;aspect-ratio:{{ r.rightRatio }};border:1px solid rgba(233,238,241,.18);background:#0C0E12">
                     <div role="img" aria-label="{{ r.rightAlt }}" style="position:absolute;inset:0;background-image:{{ r.rightBg }};background-size:cover;background-position:center"></div>
                   </div>
@@ -126,7 +128,7 @@
                 <div style="font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#7E8A93;padding-bottom:12px">{{ r.projectsLabel }}</div>
                 <sc-for list="{{ r.projects }}" as="p" hint-placeholder-count="3">
                   <div style="border-top:1px solid rgba(233,238,241,.1);padding:18px 0;display:grid;grid-template-columns:52px minmax(0,1fr);gap:clamp(10px,2vw,28px)">
-                    <span style="font-size:12px;letter-spacing:.09em;color:#FF8A5B">{{ p.tag }}</span>
+                    <span style="font-size:12px;letter-spacing:.09em;color:#4FB3FF">{{ p.tag }}</span>
                     <div style="display:flex;flex-direction:column;gap:8px;min-width:0">
                       <h3 style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(15px,1.5vw,19px);line-height:1.25;letter-spacing:-.01em;color:#E9EEF1">{{ p.title }}</h3>
                       <p style="margin:0;font-size:13.5px;line-height:1.7;color:#AAB4BB;text-wrap:pretty">{{ p.body }}</p>
@@ -148,7 +150,7 @@
       </div>
       <div style="flex:999 1 420px;min-width:0;display:flex;flex-direction:column;border-top:1px solid rgba(233,238,241,.2)">
         <sc-for list="{{ pubs }}" as="p" hint-placeholder-count="4">
-          <a href="{{ p.href }}" target="{{ p.target }}" rel="noopener" style="border-bottom:1px solid rgba(233,238,241,.12);padding:clamp(20px,3vh,30px) 0;display:flex;flex-direction:column;gap:9px;color:#E9EEF1" style-hover="background:rgba(72,214,196,.05)">
+          <a href="{{ p.href }}" target="{{ p.target }}" rel="noopener" style="border-bottom:1px solid rgba(233,238,241,.12);padding:clamp(20px,3vh,30px) 0;display:flex;flex-direction:column;gap:9px;color:#E9EEF1" style-hover="background:rgba(79,179,255,.06)">
             <span style="font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:clamp(14px,1.35vw,17px);line-height:1.42;text-wrap:pretty">{{ p.title }}</span>
             <span style="font-size:11.5px;line-height:1.6;color:#7E8A93">{{ p.venue }}</span>
           </a>
@@ -161,8 +163,8 @@
     <div style="max-width:1440px;margin:0 auto;display:flex;flex-direction:column;gap:clamp(28px,6vh,60px)">
       <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(34px,7.5vw,108px);line-height:.92;letter-spacing:-.04em;color:#F4F8FA;max-width:22ch;text-wrap:balance">Building something hard?<br />Get in touch.</div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:clamp(16px,4vw,48px);border-top:1px solid rgba(233,238,241,.14);padding-top:22px">
-        <a href="mailto:stephanieogara1@gmail.com" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(16px,2vw,24px);letter-spacing:-.01em;color:#E9EEF1">stephanieogara1@gmail.com</a>
-        <a href="https://www.linkedin.com/in/stephanie-ogara" target="_blank" rel="noopener" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(16px,2vw,24px);letter-spacing:-.01em;color:#E9EEF1">LinkedIn</a>
+        <a href="mailto:stephanieogara1@gmail.com" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(16px,2vw,24px);letter-spacing:-.01em;color:#4FB3FF">stephanieogara1@gmail.com</a>
+        <a href="https://www.linkedin.com/in/stephanie-ogara" target="_blank" rel="noopener" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(16px,2vw,24px);letter-spacing:-.01em;color:#4FB3FF">LinkedIn</a>
       </div>
     </div>
   </section>
@@ -171,7 +173,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;particleCount&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:1500,&quot;min&quot;:300,&quot;max&quot;:4000,&quot;step&quot;:100,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Flow field&quot;},&quot;showFigures&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Layout&quot;}}">
 class Component extends DCLogic {
-  state = { roles: [], pubs: [], src: 1, visc: 0.12, touched: false };
+  state = { roles: [], pubs: [], src: 1, visc: 0.12, touched: false, scrolled: false };
 
   constructor(p) {
     super(p);
@@ -183,6 +185,12 @@ class Component extends DCLogic {
     import('./content.js').then(m => this.setState({ roles: m.roles, pubs: m.pubs }));
     this.startField();
     this.observe();
+    this._onScroll = () => {
+      const s = window.scrollY > 80;
+      if (s !== this.state.scrolled) this.setState({ scrolled: s });
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    this._onScroll();
   }
 
   componentDidUpdate() { this.observe(); }
@@ -191,7 +199,10 @@ class Component extends DCLogic {
     cancelAnimationFrame(this._raf);
     if (this._onMove) window.removeEventListener('pointermove', this._onMove);
     if (this._onFirst) window.removeEventListener('pointermove', this._onFirst);
+    if (this._onDown) cv.removeEventListener('pointerdown', this._onDown);
+    if (this._onUp) { window.removeEventListener('pointerup', this._onUp); window.removeEventListener('pointercancel', this._onUp); }
     if (this._ro) this._ro.disconnect();
+    if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
     if (this._onResize) window.removeEventListener('resize', this._onResize);
   }
 
@@ -225,7 +236,7 @@ class Component extends DCLogic {
 
     let u, v, u0, v0, T, T0, p, div, us, vs, parts = [];
     const COUNT = Math.max(200, this.props.particleCount ?? 4200);
-    const ptr = { x: -1e4, y: -1e4, inside: false, px: -1e4, py: -1e4 };
+    const ptr = { x: -1e4, y: -1e4, inside: false, px: -1e4, py: -1e4, held: false, touch: false };
 
     const IX = (i, j) => i + j * NX;
     const alloc = () => {
@@ -271,10 +282,26 @@ class Component extends DCLogic {
       const sc = r.width / Math.max(w, 1);
       const x = (e.clientX - r.left - ox * sc) / (cell * sc);
       const y = (e.clientY - r.top - oy * sc) / (cell * sc);
-      ptr.inside = x >= 0 && x <= NX && y >= 0 && y <= NY;
+      ptr.touch = e.pointerType === 'touch';
+      const within = x >= 0 && x <= NX && y >= 0 && y <= NY;
+      ptr.inside = ptr.touch ? (within && ptr.held) : within;
       ptr.px = ptr.x; ptr.py = ptr.y; ptr.x = x; ptr.y = y;
     };
     window.addEventListener('pointermove', this._onMove, { passive: true });
+
+    this._onDown = e => {
+      if (e.target !== cv) return;
+      const r = cv.getBoundingClientRect();
+      const sc = r.width / Math.max(w, 1);
+      ptr.x = (e.clientX - r.left - ox * sc) / (cell * sc);
+      ptr.y = (e.clientY - r.top - oy * sc) / (cell * sc);
+      ptr.px = ptr.x; ptr.py = ptr.y;
+      ptr.inside = true; ptr.held = true;
+    };
+    this._onUp = () => { ptr.held = false; if (ptr.touch) ptr.inside = false; };
+    cv.addEventListener('pointerdown', this._onDown, { passive: true });
+    window.addEventListener('pointerup', this._onUp, { passive: true });
+    window.addEventListener('pointercancel', this._onUp, { passive: true });
 
     this._onFirst = () => {
       if (!ptr.inside) return;
@@ -470,8 +497,7 @@ class Component extends DCLogic {
       ...r,
       hasProjects: r.projects && r.projects.length ? true : false,
       hasFigures: this.props.showFigures === false ? false : (r.figures && r.figures.length ? true : false),
-      figWrap: side ? 'wrap' : 'nowrap',
-      figLift: side ? '-86px' : '0px',
+
       hasFiguresRight: !!side,
       rightBg: side && side.photo ? 'url("' + side.photo + '")' : undefined, rightAlt: side && side.alt,
       rightCap: side && side.cap, rightRatio: (side && side.ratio) || '3/4',
@@ -490,6 +516,10 @@ class Component extends DCLogic {
       rootRef: this.rootRef,
       canvasRef: this.canvasRef,
       hintOpacity: this.state.touched ? 0 : 1,
+      navBg: this.state.scrolled ? 'rgba(79,179,255,.94)' : 'rgba(16,19,24,0)',
+      navInk: this.state.scrolled ? '#062A45' : '#E9EEF1',
+      navLink: this.state.scrolled ? '#062A45' : '#C3CDD3',
+      navRule: this.state.scrolled ? 'rgba(6,42,69,.2)' : 'rgba(233,238,241,0)',
       videoRef: el => { if (el && el.paused) el.play().catch(() => {}); },
       src, srcLabel, srcColor,
       viscLabel: viscPct <= 20 ? 'Like water' : (viscPct >= 65 ? 'Like syrup' : 'Moderate'),
