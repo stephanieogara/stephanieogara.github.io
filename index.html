@@ -11,7 +11,7 @@
 <x-dc>
 <helmet>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <script src="./image-slot.js"></script>
   <style>
     :root{color-scheme:only light}
@@ -91,7 +91,7 @@
               <div style="flex:999 1 320px;min-width:0;display:flex;flex-direction:column;gap:14px">
                 <h2 style="margin:0;font-family:'Archivo',sans-serif;font-weight:700;font-size:clamp(28px,4.4vw,62px);line-height:.98;letter-spacing:-.035em;color:#17160F">{{ r.org }}</h2>
                 <div style="font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#0A4FB8">{{ r.role }}</div>
-                <p style="margin:0;font-size:clamp(13.5px,1.25vw,16px);line-height:1.7;color:#3C3A2E;text-wrap:pretty">{{ r.body }}</p>
+                <p style="margin:0;font-family:'Source Serif 4',serif;font-size:clamp(15.5px,1.45vw,18px);line-height:1.6;color:#3C3A2E;text-wrap:pretty">{{ r.body }}</p>
               </div>
               <sc-if value="{{ r.hasFiguresRight }}" hint-placeholder-val="{{ false }}">
                 <figure style="margin:0;flex:0 1 auto;width:{{ r.rightW }};max-width:100%;display:flex;flex-direction:column;gap:9px">
@@ -132,7 +132,7 @@
                     <span style="font-size:12px;font-weight:500;letter-spacing:.09em;color:#0A4FB8">{{ p.tag }}</span>
                     <div style="display:flex;flex-direction:column;gap:8px;min-width:0">
                       <h3 style="margin:0;font-family:'Archivo',sans-serif;font-weight:700;font-size:clamp(15px,1.5vw,19px);line-height:1.25;letter-spacing:-.01em;color:#1C1A13">{{ p.title }}</h3>
-                      <p style="margin:0;font-size:13.5px;line-height:1.7;color:#4E4C41;text-wrap:pretty">{{ p.body }}</p>
+                      <p style="margin:0;font-family:'Source Serif 4',serif;font-size:15.5px;line-height:1.6;color:#4E4C41;text-wrap:pretty">{{ p.body }}</p>
                     </div>
                   </div>
                 </sc-for>
@@ -274,7 +274,8 @@ class Component extends DCLogic {
       // the fluid lives inside a closed vessel inset from the canvas edge
       const inset = 1;
       const availW = Math.max(40, w - inset * 2), availH = Math.max(40, h - inset * 2);
-      cell = availH / NY_TARGET;
+      const rows = availW / availH < 1.6 ? NY_TARGET * 1.35 : NY_TARGET;
+      cell = availH / rows;
       NX = Math.max(30, Math.min(112, Math.round(availW / cell)));
       cell = availW / NX;
       NY = Math.max(14, Math.round(availH / cell));
@@ -316,7 +317,7 @@ class Component extends DCLogic {
       ptr.y = (e.clientY - r.top - oy * sc) / (cell * sc);
       ptr.px = ptr.x; ptr.py = ptr.y;
       ptr.inside = true; ptr.held = true; ptr.touch = e.pointerType === 'touch';
-      ptr.pulse = e.pointerType === 'touch' ? 8 : 3;
+      ptr.pulse = e.pointerType === 'touch' ? 3 : 0;
       if (!this.state.touched) this.setState({ touched: true, isTouch: e.pointerType === 'touch' ? true : this.state.isTouch });
     };
     this._onUp = () => { ptr.held = false; if (ptr.touch) ptr.inside = false; };
@@ -422,11 +423,11 @@ class Component extends DCLogic {
       const src = this.state.src ?? 1;
       if (ptr.pulse > 0 && Math.abs(src) > 0.04) {
         // a tap lays down a wide, strong patch over a few frames
-        brush(ptr.x, ptr.y, src * (ptr.touch ? 0.55 : 0.3), ptr.touch ? 8 : 5.2);
+        brush(ptr.x, ptr.y, src * 0.18, 5);
         ptr.pulse -= 1;
       }
-      if ((ptr.inside || ptr.held) && Math.abs(src) > 0.04) {
-        brush(ptr.x, ptr.y, src * (ptr.touch ? 0.26 : 0.09), ptr.touch ? 6 : 3.4);
+      if ((ptr.inside || (ptr.held && ptr.touch)) && Math.abs(src) > 0.04) {
+        brush(ptr.x, ptr.y, src * (ptr.touch ? 0.09 : 0.09), ptr.touch ? 3.8 : 3.4);
         const dx = ptr.x - ptr.px, dy = ptr.y - ptr.py;
         if (Math.abs(dx) + Math.abs(dy) < 20) {
           const i = Math.max(1, Math.min(NX - 2, Math.round(ptr.x)));
