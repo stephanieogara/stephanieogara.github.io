@@ -19,7 +19,7 @@ export const roles = [
         body:"Volumetric three-component fluid measurement experiments demand minimal optical distortion, precise camera calibration, and heavy computation. To reduce that burden, I developed a physics-informed neural network constrained by conservation of mass and momentum and the boundary conditions, so a volumetric flow field can be predicted from planar measurements alone." },
     ] },
 
-  { id:'seed-fund', no:'03', org:'Caltech Seed Fund', role:'Venture Analyst, Office of Technology Transfer', period:'2021 to 2024', place:'Pasadena, CA',
+  { id:'seed-fund', no:'03', org:'Caltech Seed Fund', role:'Entrepreneurship Intern, Office of Technology Transfer', period:'2021 to 2024', place:'Pasadena, CA',
     body:"Working with the Caltech Seed Fund and Office of Technology Transfer, I evaluated the commercial potential of my own research. I assessed technical and market viability through interviews with clinicians, investors, and industry leaders to determine which technologies had a credible path to patients. My business plan for the ocular drug delivery work won $10K in a campus-wide competition." },
 
   { id:'konrad', no:'04', org:'Konrad Group', role:'Strategy & Technology Consultant', period:'2018 to 2019', place:'New York, NY',
