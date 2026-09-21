@@ -11,22 +11,23 @@
 <x-dc>
 <helmet>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <script src="./image-slot.js"></script>
   <style>
+    :root{color-scheme:only light}
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth;overscroll-behavior-y:none}
-    body{margin:0;background:#EDF3FA;color:#0D2032;-webkit-font-smoothing:antialiased;overscroll-behavior-y:none}
-    a{color:#0A58C7;text-decoration:none}
+    html{scroll-behavior:smooth;overscroll-behavior-y:none;background:#F1EFE9}
+    body{margin:0;background:#F1EFE9;color:#1C1A13;-webkit-font-smoothing:antialiased;overscroll-behavior-y:none}
+    a{color:#0A4FB8;text-decoration:none}
     a:hover{color:#073F91}
-    ::selection{background:#0A58C7;color:#EDF3FA}
+    ::selection{background:#0A58C7;color:#F1EFE9}
     input[type=range]{-webkit-appearance:none;appearance:none;height:22px;padding:8px 0;background-clip:content-box;background-repeat:no-repeat;border-radius:3px;outline:none;touch-action:none}
-    input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#08192B;border:none;box-shadow:0 0 0 2px #EDF3FA;cursor:pointer}
-    input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:#08192B;border:none;box-shadow:0 0 0 2px #EDF3FA;cursor:pointer}
+    input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#17160F;border:none;box-shadow:0 0 0 2px #F1EFE9;cursor:pointer}
+    input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:#17160F;border:none;box-shadow:0 0 0 2px #F1EFE9;cursor:pointer}
   </style>
 </helmet>
 
-<div ref="{{ rootRef }}" style="font-family:'IBM Plex Mono',monospace;background:#EDF3FA;min-height:100vh;overflow-x:hidden">
+<div ref="{{ rootRef }}" style="font-family:'IBM Plex Mono',monospace;background:#F1EFE9;min-height:100vh;overflow-x:hidden">
 
   <nav style="position:fixed;top:0;left:0;right:0;z-index:30;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px clamp(16px,4vw,40px);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:{{ navInk }};background:{{ navBg }};backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid {{ navRule }};transition:background .35s ease,color .35s ease,border-color .35s ease">
     <a href="#top" style="flex:0 1 auto;min-width:0;font-size:clamp(11.5px,3.1vw,13.5px);letter-spacing:.09em;white-space:nowrap;color:{{ navInk }};transition:color .35s ease">Stephanie O’Gara</a>
@@ -43,24 +44,24 @@
         <canvas ref="{{ canvasRef }}" style="position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:pan-y"></canvas>
         <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:14px;pointer-events:none;padding:clamp(16px,3.5%,34px)">
           <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;justify-content:space-between">
-            <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(30px,5.6vw,78px);line-height:.94;letter-spacing:-.035em;color:#F4F8FA;text-shadow:0 2px 26px rgba(7,8,11,.86)">Hi, I&#8217;m Stephanie</div>
+            <div style="font-family:'Archivo',sans-serif;font-weight:700;font-size:clamp(30px,5.6vw,78px);line-height:.94;letter-spacing:-.035em;color:#F4F8FA;text-shadow:0 2px 26px rgba(7,8,11,.86)">Hi, I&#8217;m Stephanie</div>
             <span style="font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#D4DEE6;background:rgba(7,8,11,.72);padding:7px 12px;border:1px solid rgba(233,238,241,.18);opacity:{{ hintOpacity }};transition:opacity .8s ease">{{ hintText }}</span>
           </div>
         </div>
       </div>
-      <p style="margin:0;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#3A5064">An illustration of buoyancy-driven flow in a closed vessel. Not research data.</p>
+      <p style="margin:0;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#4E4C41">An illustration of buoyancy-driven flow in a closed vessel. Not research data.</p>
     </div>
     <div style="position:relative;display:flex;flex-direction:column">
       <div style="display:flex;flex-wrap:wrap;gap:clamp(16px,4vw,56px);align-items:flex-start;justify-content:flex-end">
         <div style="flex:1 1 300px;min-width:0;max-width:420px;display:flex;flex-direction:column;gap:2px">
-          <label style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:#3A5064">
+          <label style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:#4E4C41">
             <span style="flex:0 0 88px;white-space:nowrap">Source</span>
-            <input type="range" min="-1" max="1" step="0.02" value="{{ src }}" onChange="{{ onSrc }}" onInput="{{ onSrc }}" style="flex:1 1 150px;min-width:140px;background:linear-gradient(90deg,#0A58C7 0%,#8FA6BC 50%,#C64A1A 100%)" />
+            <input type="range" min="-1" max="1" step="0.02" value="{{ src }}" onChange="{{ onSrc }}" onInput="{{ onSrc }}" style="flex:1 1 150px;min-width:140px;background:linear-gradient(90deg,#0A58C7 0%,#A8A496 50%,#C64A1A 100%)" />
             <span style="flex:0 0 82px;text-align:right;white-space:nowrap;color:{{ srcColor }}">{{ srcLabel }}</span>
           </label>
-          <label style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:#3A5064">
+          <label style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:#4E4C41">
             <span style="flex:0 0 88px;white-space:nowrap">Viscosity</span>
-            <input type="range" min="0" max="0.4" step="0.005" value="{{ visc }}" onChange="{{ onVisc }}" onInput="{{ onVisc }}" style="flex:1 1 150px;min-width:140px;background:linear-gradient(90deg,#8FA6BC 0%,#3A5064 100%)" />
+            <input type="range" min="0" max="0.4" step="0.005" value="{{ visc }}" onChange="{{ onVisc }}" onInput="{{ onVisc }}" style="flex:1 1 150px;min-width:140px;background:linear-gradient(90deg,#A8A496 0%,#4E4C41 100%)" />
             <span style="flex:0 0 82px;text-align:right;white-space:nowrap">{{ viscLabel }}</span>
           </label>
         </div>
@@ -68,36 +69,36 @@
     </div>
   </header>
 
-  <section id="intro" style="position:relative;z-index:2;background:#EDF3FA;border-top:1px solid rgba(8,25,43,.17);padding:clamp(52px,11vh,120px) clamp(16px,4vw,40px)">
+  <section id="intro" style="position:relative;z-index:2;background:#F1EFE9;border-top:1px solid rgba(23,22,15,.17);padding:clamp(52px,11vh,120px) clamp(16px,4vw,40px)">
     <div style="max-width:1440px;margin:0 auto;display:flex;flex-wrap:wrap;gap:clamp(24px,5vw,72px);align-items:center">
-      <div style="flex:1 1 260px;min-width:0;max-width:min(320px,52vw);position:relative;aspect-ratio:1/1;border:1px solid rgba(233,238,241,.18);background:#DCE6F2">
+      <div style="flex:1 1 260px;min-width:0;max-width:min(320px,52vw);position:relative;aspect-ratio:1/1;border:1px solid rgba(233,238,241,.18);background:#E4E0D6">
         <img src="./portrait.jpg" alt="Stephanie O’Gara" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block" />
       </div>
-      <p style="margin:0;flex:1 1 380px;min-width:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(22px,3.4vw,46px);line-height:1.2;letter-spacing:-.026em;color:#08192B;max-width:28ch;text-wrap:pretty">I work at the intersection of emerging tech and company creation, currently exploring where physics meets AI.</p>
+      <p style="margin:0;flex:1 1 380px;min-width:0;font-family:'Archivo',sans-serif;font-weight:500;font-size:clamp(22px,3.4vw,46px);line-height:1.2;letter-spacing:-.026em;color:#17160F;max-width:28ch;text-wrap:pretty">I work at the intersection of emerging tech and company creation, currently exploring where physics meets AI.</p>
     </div>
   </section>
 
-  <section id="work" style="position:relative;z-index:2;background:#EDF3FA;border-top:1px solid rgba(8,25,43,.17);padding:0 clamp(16px,4vw,40px) clamp(40px,8vh,90px)">
+  <section id="work" style="position:relative;z-index:2;background:#F1EFE9;border-top:1px solid rgba(23,22,15,.17);padding:0 clamp(16px,4vw,40px) clamp(40px,8vh,90px)">
     <div style="max-width:1440px;margin:0 auto">
       <sc-for list="{{ roles }}" as="r" hint-placeholder-count="3">
-        <article class="rvl" style="border-top:1px solid rgba(8,25,43,.17);padding:clamp(30px,5vh,58px) 0;display:flex;flex-wrap:wrap;gap:clamp(14px,4vw,64px);align-items:flex-start;opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)">
-          <div style="flex:1 1 110px;display:flex;flex-direction:column;gap:10px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#4A6075">
+        <article class="rvl" style="border-top:1px solid rgba(23,22,15,.17);padding:clamp(30px,5vh,58px) 0;display:flex;flex-wrap:wrap;gap:clamp(14px,4vw,64px);align-items:flex-start;opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)">
+          <div style="flex:1 1 110px;display:flex;flex-direction:column;gap:10px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#6A6759">
             <span>{{ r.period }}</span>
-            <span style="color:#4A6075">{{ r.place }}</span>
+            <span style="color:#6A6759">{{ r.place }}</span>
           </div>
           <div style="flex:999 1 320px;min-width:0;display:flex;flex-direction:column;gap:14px">
             <div style="display:flex;flex-wrap:wrap;gap:clamp(16px,2.5vw,30px);align-items:flex-start">
               <div style="flex:999 1 320px;min-width:0;display:flex;flex-direction:column;gap:14px">
-                <h2 style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(28px,4.4vw,62px);line-height:.98;letter-spacing:-.035em;color:#08192B">{{ r.org }}</h2>
-                <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#0A58C7">{{ r.role }}</div>
-                <p style="margin:0;font-size:clamp(13.5px,1.25vw,16px);line-height:1.7;color:#2C4053;text-wrap:pretty">{{ r.body }}</p>
+                <h2 style="margin:0;font-family:'Archivo',sans-serif;font-weight:700;font-size:clamp(28px,4.4vw,62px);line-height:.98;letter-spacing:-.035em;color:#17160F">{{ r.org }}</h2>
+                <div style="font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#0A4FB8">{{ r.role }}</div>
+                <p style="margin:0;font-size:clamp(13.5px,1.25vw,16px);line-height:1.7;color:#3C3A2E;text-wrap:pretty">{{ r.body }}</p>
               </div>
               <sc-if value="{{ r.hasFiguresRight }}" hint-placeholder-val="{{ false }}">
                 <figure style="margin:0;flex:0 1 auto;width:{{ r.rightW }};max-width:100%;display:flex;flex-direction:column;gap:9px">
-                  <div style="position:relative;aspect-ratio:{{ r.rightRatio }};border:1px solid rgba(233,238,241,.18);background:#DCE6F2">
+                  <div style="position:relative;aspect-ratio:{{ r.rightRatio }};border:1px solid rgba(233,238,241,.18);background:#E4E0D6">
                     <div role="img" aria-label="{{ r.rightAlt }}" style="position:absolute;inset:0;background-image:{{ r.rightBg }};background-size:cover;background-position:center"></div>
                   </div>
-                  <figcaption style="font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:#4A6075">{{ r.rightCap }}</figcaption>
+                  <figcaption style="font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:#6A6759">{{ r.rightCap }}</figcaption>
                 </figure>
               </sc-if>
             </div>
@@ -106,7 +107,7 @@
               <div style="margin-top:12px;display:flex;flex-wrap:wrap;justify-content:center;gap:18px;max-width:1000px;align-items:start;margin-left:auto;margin-right:auto">
                 <sc-for list="{{ r.figures }}" as="f" hint-placeholder-count="0">
                   <figure style="margin:0;min-width:0;max-width:{{ f.maxW }};display:flex;flex-direction:column;justify-content:space-between;gap:9px">
-                    <div style="position:relative;aspect-ratio:{{ f.ratio }};border:1px solid rgba(233,238,241,.18);background:#DCE6F2">
+                    <div style="position:relative;aspect-ratio:{{ f.ratio }};border:1px solid rgba(233,238,241,.18);background:#E4E0D6">
                       <sc-if value="{{ f.isVideo }}" hint-placeholder-val="{{ false }}">
                         <video ref="{{ videoRef }}" src="{{ f.video }}" autoPlay="{{ true }}" loop="{{ true }}" muted="{{ true }}" controls="{{ true }}" playsInline="{{ true }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block"></video>
                       </sc-if>
@@ -117,7 +118,7 @@
                         <image-slot id="{{ f.id }}" shape="rect" radius="0" fit="cover" placeholder="{{ f.ph }}" style="position:absolute;inset:0"></image-slot>
                       </sc-if>
                     </div>
-                    <figcaption style="font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:#4A6075">{{ f.cap }}</figcaption>
+                    <figcaption style="font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:#6A6759">{{ f.cap }}</figcaption>
                   </figure>
                 </sc-for>
               </div>
@@ -125,13 +126,13 @@
 
             <sc-if value="{{ r.hasProjects }}" hint-placeholder-val="{{ false }}">
               <div style="margin-top:14px;display:flex;flex-direction:column;gap:2px">
-                <div style="font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#4A6075;padding-bottom:12px">{{ r.projectsLabel }}</div>
+                <div style="font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#6A6759;padding-bottom:12px">{{ r.projectsLabel }}</div>
                 <sc-for list="{{ r.projects }}" as="p" hint-placeholder-count="3">
-                  <div style="border-top:1px solid rgba(8,25,43,.13);padding:18px 0;display:grid;grid-template-columns:52px minmax(0,1fr);gap:clamp(10px,2vw,28px)">
-                    <span style="font-size:12px;letter-spacing:.09em;color:#0A58C7">{{ p.tag }}</span>
+                  <div style="border-top:1px solid rgba(23,22,15,.13);padding:18px 0;display:grid;grid-template-columns:52px minmax(0,1fr);gap:clamp(10px,2vw,28px)">
+                    <span style="font-size:12px;font-weight:500;letter-spacing:.09em;color:#0A4FB8">{{ p.tag }}</span>
                     <div style="display:flex;flex-direction:column;gap:8px;min-width:0">
-                      <h3 style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(15px,1.5vw,19px);line-height:1.25;letter-spacing:-.01em;color:#0D2032">{{ p.title }}</h3>
-                      <p style="margin:0;font-size:13.5px;line-height:1.7;color:#3A5064;text-wrap:pretty">{{ p.body }}</p>
+                      <h3 style="margin:0;font-family:'Archivo',sans-serif;font-weight:700;font-size:clamp(15px,1.5vw,19px);line-height:1.25;letter-spacing:-.01em;color:#1C1A13">{{ p.title }}</h3>
+                      <p style="margin:0;font-size:13.5px;line-height:1.7;color:#4E4C41;text-wrap:pretty">{{ p.body }}</p>
                     </div>
                   </div>
                 </sc-for>
@@ -143,28 +144,28 @@
     </div>
   </section>
 
-  <section id="writing" style="position:relative;z-index:2;background:#DCE9FA;border-top:1px solid rgba(8,25,43,.17);padding:clamp(56px,11vh,110px) clamp(16px,4vw,40px)">
+  <section id="writing" style="position:relative;z-index:2;background:#E9E6DE;border-top:1px solid rgba(23,22,15,.17);padding:clamp(56px,11vh,110px) clamp(16px,4vw,40px)">
     <div style="max-width:1440px;margin:0 auto;display:flex;flex-wrap:wrap;gap:clamp(20px,5vw,72px);align-items:flex-start">
       <div style="flex:1 1 230px;min-width:0;position:sticky;top:64px;display:flex;flex-direction:column;gap:12px">
-        <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(24px,3.4vw,44px);line-height:.98;letter-spacing:-.03em;color:#08192B">Selected<br />publications</div>
+        <div style="font-family:'Archivo',sans-serif;font-weight:700;font-size:clamp(24px,3.4vw,44px);line-height:.98;letter-spacing:-.03em;color:#17160F">Selected<br />publications</div>
       </div>
-      <div style="flex:999 1 420px;min-width:0;display:flex;flex-direction:column;border-top:1px solid rgba(8,25,43,.24)">
+      <div style="flex:999 1 420px;min-width:0;display:flex;flex-direction:column;border-top:1px solid rgba(23,22,15,.24)">
         <sc-for list="{{ pubs }}" as="p" hint-placeholder-count="4">
-          <a href="{{ p.href }}" target="{{ p.target }}" rel="noopener" style="border-bottom:1px solid rgba(8,25,43,.15);padding:clamp(20px,3vh,30px) 0;display:flex;flex-direction:column;gap:9px;color:#0D2032" style-hover="background:rgba(10,88,199,.07)">
+          <a href="{{ p.href }}" target="{{ p.target }}" rel="noopener" style="border-bottom:1px solid rgba(23,22,15,.15);padding:clamp(20px,3vh,30px) 0;display:flex;flex-direction:column;gap:9px;color:#1C1A13" style-hover="background:rgba(10,88,199,.07)">
             <span style="font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:clamp(14px,1.35vw,17px);line-height:1.42;text-wrap:pretty">{{ p.title }}</span>
-            <span style="font-size:11.5px;line-height:1.6;color:#4A6075">{{ p.venue }}</span>
+            <span style="font-size:11.5px;line-height:1.6;color:#6A6759">{{ p.venue }}</span>
           </a>
         </sc-for>
       </div>
     </div>
   </section>
 
-  <section id="contact" style="position:relative;z-index:2;background:#EDF3FA;border-top:1px solid rgba(8,25,43,.17);padding:clamp(60px,13vh,140px) clamp(16px,4vw,40px) clamp(28px,5vh,48px)">
+  <section id="contact" style="position:relative;z-index:2;background:#F1EFE9;border-top:1px solid rgba(23,22,15,.17);padding:clamp(60px,13vh,140px) clamp(16px,4vw,40px) clamp(28px,5vh,48px)">
     <div style="max-width:1440px;margin:0 auto;display:flex;flex-direction:column;gap:clamp(28px,6vh,60px)">
-      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(34px,7.5vw,108px);line-height:.92;letter-spacing:-.04em;color:#08192B;max-width:22ch;text-wrap:balance">Building something hard?<br />Get in touch.</div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:clamp(16px,4vw,48px);border-top:1px solid rgba(8,25,43,.17);padding-top:22px">
-        <a href="mailto:stephanieogara1@gmail.com" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(16px,2vw,24px);letter-spacing:-.01em;color:#0A58C7">stephanieogara1@gmail.com</a>
-        <a href="https://www.linkedin.com/in/stephanie-ogara" target="_blank" rel="noopener" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(16px,2vw,24px);letter-spacing:-.01em;color:#0A58C7">LinkedIn</a>
+      <div style="font-family:'Archivo',sans-serif;font-weight:700;font-size:clamp(34px,7.5vw,108px);line-height:.92;letter-spacing:-.04em;color:#17160F;max-width:22ch;text-wrap:balance">Building something hard?<br />Get in touch.</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:clamp(16px,4vw,48px);border-top:1px solid rgba(23,22,15,.17);padding-top:22px">
+        <a href="mailto:stephanieogara1@gmail.com" style="font-family:'Archivo',sans-serif;font-weight:500;font-size:clamp(16px,2vw,24px);letter-spacing:-.01em;color:#0A4FB8">stephanieogara1@gmail.com</a>
+        <a href="https://www.linkedin.com/in/stephanie-ogara" target="_blank" rel="noopener" style="font-family:'Archivo',sans-serif;font-weight:500;font-size:clamp(16px,2vw,24px);letter-spacing:-.01em;color:#0A4FB8">LinkedIn</a>
       </div>
     </div>
   </section>
@@ -237,14 +238,19 @@ class Component extends DCLogic {
     // Boussinesq convection on a staggered-free MAC-style grid:
     // semi-Lagrangian advection, buoyancy source from the temperature
     // field, and Jacobi pressure projection to keep the flow incompressible.
-    const NX = 80;
-    let NY = 48, w = 0, h = 0, cell = 1, ox = 0, oy = 0, innerW = 0, innerH = 0;
+    // The grid is derived from the vessel's HEIGHT, not its width, so a short
+    // wide desktop vessel and a tall narrow phone one both get roughly the same
+    // number of rows. Fixing the column count instead made phone cells tiny,
+    // which shrank the convection rolls and halved the tracer density.
+    const NY_TARGET = 32;
+    let NX = 80, NY = 32, w = 0, h = 0, cell = 1, ox = 0, oy = 0, innerW = 0, innerH = 0;
     const dpr = Math.min(devicePixelRatio || 1, 2);
     const DT = 1 / 60, BETA = 8.5, DAMP = 0.985, TDECAY = 0.9975, ITER = 18;
     const ADV = DT * 60 * 0.16;
 
     let u, v, u0, v0, T, T0, p, div, us, vs, parts = [];
-    const COUNT = Math.max(200, this.props.particleCount ?? 4200);
+    const DENSITY = Math.max(200, this.props.particleCount ?? 4200) / 2560;
+    let COUNT = 2000;
     const ptr = { x: -1e4, y: -1e4, inside: false, px: -1e4, py: -1e4, held: false, touch: false, pulse: 0 };
 
     const IX = (i, j) => i + j * NX;
@@ -267,10 +273,14 @@ class Component extends DCLogic {
       w = cv.clientWidth; h = cv.clientHeight;
       // the fluid lives inside a closed vessel inset from the canvas edge
       const inset = 1;
-      innerW = Math.max(40, w - inset * 2);
-      cell = innerW / NX;
-      NY = Math.max(12, Math.round((h - inset * 2) / cell));
+      const availW = Math.max(40, w - inset * 2), availH = Math.max(40, h - inset * 2);
+      cell = availH / NY_TARGET;
+      NX = Math.max(30, Math.min(112, Math.round(availW / cell)));
+      cell = availW / NX;
+      NY = Math.max(14, Math.round(availH / cell));
+      innerW = NX * cell;
       innerH = NY * cell;
+      COUNT = Math.max(600, Math.min(12000, Math.round(DENSITY * NX * NY)));
       ox = Math.round((w - innerW) / 2);
       oy = Math.round((h - innerH) / 2);
       cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
@@ -415,8 +425,8 @@ class Component extends DCLogic {
         brush(ptr.x, ptr.y, src * (ptr.touch ? 0.55 : 0.3), ptr.touch ? 8 : 5.2);
         ptr.pulse -= 1;
       }
-      if (ptr.inside && Math.abs(src) > 0.04) {
-        brush(ptr.x, ptr.y, src * (ptr.touch ? 0.2 : 0.09), ptr.touch ? 5 : 3.4);
+      if ((ptr.inside || ptr.held) && Math.abs(src) > 0.04) {
+        brush(ptr.x, ptr.y, src * (ptr.touch ? 0.26 : 0.09), ptr.touch ? 6 : 3.4);
         const dx = ptr.x - ptr.px, dy = ptr.y - ptr.py;
         if (Math.abs(dx) + Math.abs(dy) < 20) {
           const i = Math.max(1, Math.min(NX - 2, Math.round(ptr.x)));
@@ -524,7 +534,7 @@ class Component extends DCLogic {
     const src = this.state.src ?? 1;
     const mag = Math.abs(src);
     const srcLabel = mag <= 0.04 ? 'Off' : (src > 0 ? 'Heat' : 'Cold');
-    const srcColor = mag <= 0.04 ? '#3A5064' : (src > 0 ? '#9C3810' : '#0A58C7');
+    const srcColor = mag <= 0.04 ? '#4E4C41' : (src > 0 ? '#9C3810' : '#0A58C7');
     const viscPct = Math.round(((this.state.visc ?? 0.12) / 0.4) * 100);
     return {
       roles,
@@ -533,10 +543,10 @@ class Component extends DCLogic {
       canvasRef: this.canvasRef,
       hintOpacity: this.state.touched ? 0 : 1,
       hintText: this.state.isTouch ? 'Tap the fluid to add heat' : 'Drag across the fluid to add heat',
-      navBg: this.state.scrolled ? 'rgba(10,88,199,.95)' : 'rgba(237,243,250,0)',
-      navInk: this.state.scrolled ? '#EAF2FC' : '#08192B',
-      navLink: this.state.scrolled ? '#CFE0F6' : '#1E3446',
-      navRule: this.state.scrolled ? 'rgba(7,63,145,.3)' : 'rgba(8,25,43,0)',
+      navBg: this.state.scrolled ? 'rgba(10,88,199,.95)' : 'rgba(241,239,233,0)',
+      navInk: this.state.scrolled ? '#EAF2FC' : '#17160F',
+      navLink: this.state.scrolled ? '#CFE0F6' : '#2A2820',
+      navRule: this.state.scrolled ? 'rgba(7,63,145,.3)' : 'rgba(23,22,15,0)',
       videoRef: el => { if (el && el.paused) el.play().catch(() => {}); },
       src, srcLabel, srcColor,
       viscLabel: viscPct <= 20 ? 'Like water' : (viscPct >= 65 ? 'Like syrup' : 'Moderate'),
