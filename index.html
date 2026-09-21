@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stephanie O’Gara</title>
+<meta name="description" content="Stephanie O’Gara works at the intersection of emerging tech and company creation.">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script src="./image-slot.js"></script>
+  <style>
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:#101318;color:#E9EEF1;-webkit-font-smoothing:antialiased}
+    a{color:#48D6C4;text-decoration:none}
+    a:hover{color:#FF8A5B}
+    ::selection{background:#FF8A5B;color:#07080B}
+    input[type=range]{-webkit-appearance:none;appearance:none;height:22px;padding:8px 0;background-clip:content-box;background-repeat:no-repeat;border-radius:3px;outline:none;touch-action:none}
+    input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#F4F8FA;border:none;box-shadow:0 0 0 2px #101318;cursor:pointer}
+    input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:#F4F8FA;border:none;box-shadow:0 0 0 2px #101318;cursor:pointer}
+  </style>
+</helmet>
+
+<div ref="{{ rootRef }}" style="font-family:'IBM Plex Mono',monospace;background:#101318;min-height:100vh;overflow-x:hidden">
+
+  <nav style="position:fixed;top:0;left:0;right:0;z-index:30;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px clamp(16px,4vw,40px);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#7E8A93;mix-blend-mode:difference">
+    <a href="#top" style="font-size:13.5px;letter-spacing:.11em;color:#E9EEF1">Stephanie O’Gara</a>
+    <div style="display:flex;gap:clamp(12px,2.5vw,28px);font-size:12px">
+      <a href="#work" style="color:#C3CDD3">Work</a>
+      <a href="#writing" style="color:#C3CDD3">Publications</a>
+      <a href="#contact" style="color:#C3CDD3">Contact</a>
+    </div>
+  </nav>
+
+  <header id="top" style="position:relative;min-height:100svh;display:flex;flex-direction:column;gap:4px;padding:clamp(48px,7vh,68px) clamp(16px,4vw,40px) clamp(24px,4vh,44px);overflow:hidden">
+    <div style="flex:1 1 auto;min-height:min(62vh,640px);display:flex;flex-direction:column;gap:9px">
+      <div style="flex:1;min-height:min(50vh,420px);position:relative">
+        <canvas ref="{{ canvasRef }}" style="position:absolute;inset:0;width:100%;height:100%;display:block"></canvas>
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:14px;pointer-events:none;padding:clamp(16px,3.5%,34px)">
+          <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;justify-content:space-between">
+            <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(30px,5.6vw,78px);line-height:.94;letter-spacing:-.035em;color:#F4F8FA;text-shadow:0 2px 26px rgba(7,8,11,.86)">Hi, I&#8217;m Stephanie</div>
+            <span style="font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#A8B4BB;background:rgba(7,8,11,.72);padding:7px 12px;border:1px solid rgba(233,238,241,.18);opacity:{{ hintOpacity }};transition:opacity .8s ease">Drag across the fluid to add heat</span>
+          </div>
+        </div>
+      </div>
+      <p style="margin:0;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#A8B4BB">An illustration of buoyancy-driven flow in a closed vessel.<br />Not research data.</p>
+    </div>
+    <div style="position:relative;display:flex;flex-direction:column;margin-top:-12px">
+      <div style="display:flex;flex-wrap:wrap;gap:clamp(16px,4vw,56px);align-items:flex-start;justify-content:flex-end">
+        <div style="flex:1 1 300px;min-width:0;max-width:420px;display:flex;flex-direction:column;gap:2px">
+          <label style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:#A8B4BB">
+            <span style="flex:0 0 88px;white-space:nowrap">Source</span>
+            <input type="range" min="-1" max="1" step="0.02" value="{{ src }}" onChange="{{ onSrc }}" onInput="{{ onSrc }}" style="flex:1 1 150px;min-width:140px;background:linear-gradient(90deg,#4FB3FF 0%,#6B7680 50%,#FF8A5B 100%)" />
+            <span style="flex:0 0 82px;text-align:right;white-space:nowrap;color:{{ srcColor }}">{{ srcLabel }}</span>
+          </label>
+          <label style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:#A8B4BB">
+            <span style="flex:0 0 88px;white-space:nowrap">Viscosity</span>
+            <input type="range" min="0" max="0.4" step="0.005" value="{{ visc }}" onChange="{{ onVisc }}" onInput="{{ onVisc }}" style="flex:1 1 150px;min-width:140px;background:linear-gradient(90deg,#6B7680 0%,#A8B4BB 100%)" />
+            <span style="flex:0 0 82px;text-align:right;white-space:nowrap">{{ viscLabel }}</span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="intro" style="position:relative;z-index:2;background:#101318;border-top:1px solid rgba(233,238,241,.14);padding:clamp(52px,11vh,120px) clamp(16px,4vw,40px)">
+    <div style="max-width:1440px;margin:0 auto;display:flex;flex-wrap:wrap;gap:clamp(24px,5vw,72px);align-items:center">
+      <div style="flex:1 1 260px;min-width:0;max-width:min(320px,52vw);position:relative;aspect-ratio:1/1;border:1px solid rgba(233,238,241,.18);background:#0C0E12">
+        <img src="./assets/portrait.jpg" alt="Stephanie O’Gara" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block" />
+      </div>
+      <p style="margin:0;flex:1 1 380px;min-width:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(22px,3.4vw,46px);line-height:1.2;letter-spacing:-.026em;color:#EFF4F6;max-width:28ch;text-wrap:pretty">I work at the intersection of emerging tech and company creation, currently exploring where physics meets AI.</p>
+    </div>
+  </section>
+
+  <section id="work" style="position:relative;z-index:2;background:#101318;border-top:1px solid rgba(233,238,241,.14);padding:0 clamp(16px,4vw,40px) clamp(40px,8vh,90px)">
+    <div style="max-width:1440px;margin:0 auto">
+      <sc-for list="{{ roles }}" as="r" hint-placeholder-count="3">
+        <article class="rvl" style="border-top:1px solid rgba(233,238,241,.14);padding:clamp(30px,5vh,58px) 0;display:flex;flex-wrap:wrap;gap:clamp(14px,4vw,64px);align-items:flex-start;opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)">
+          <div style="flex:1 1 110px;display:flex;flex-direction:column;gap:10px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#7E8A93">
+            <span>{{ r.period }}</span>
+            <span style="color:#7E8A93">{{ r.place }}</span>
+          </div>
+          <div style="flex:999 1 320px;min-width:0;display:flex;flex-direction:column;gap:14px">
+            <h2 style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(28px,4.4vw,62px);line-height:.98;letter-spacing:-.035em;color:#F4F8FA">{{ r.org }}</h2>
+            <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#48D6C4">{{ r.role }}</div>
+            <div style="display:flex;flex-wrap:{{ r.figWrap }};gap:clamp(16px,2.5vw,30px);align-items:flex-start">
+              <p style="margin:0;flex:1 1 320px;min-width:0;font-size:clamp(13.5px,1.25vw,16px);line-height:1.7;color:#B4BEC5;text-wrap:pretty">{{ r.body }}</p>
+              <sc-if value="{{ r.hasFiguresRight }}" hint-placeholder-val="{{ false }}">
+                <figure style="margin:0;flex:0 0 auto;width:{{ r.rightW }};display:flex;flex-direction:column;gap:9px">
+                  <div style="position:relative;aspect-ratio:{{ r.rightRatio }};border:1px solid rgba(233,238,241,.18);background:#0C0E12">
+                    <div role="img" aria-label="{{ r.rightAlt }}" style="position:absolute;inset:0;background-image:{{ r.rightBg }};background-size:cover;background-position:center"></div>
+                  </div>
+                  <figcaption style="font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:#7E8A93">{{ r.rightCap }}</figcaption>
+                </figure>
+              </sc-if>
+            </div>
+
+            <sc-if value="{{ r.hasFigures }}" hint-placeholder-val="{{ false }}">
+              <div style="margin-top:12px;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),max-content));gap:18px;max-width:1000px;align-items:start">
+                <sc-for list="{{ r.figures }}" as="f" hint-placeholder-count="0">
+                  <figure style="margin:0;min-width:0;max-width:{{ f.maxW }};display:flex;flex-direction:column;justify-content:space-between;gap:9px">
+                    <div style="position:relative;aspect-ratio:{{ f.ratio }};border:1px solid rgba(233,238,241,.18);background:#0C0E12">
+                      <sc-if value="{{ f.isVideo }}" hint-placeholder-val="{{ false }}">
+                        <video ref="{{ videoRef }}" src="{{ f.video }}" autoPlay="{{ true }}" loop="{{ true }}" muted="{{ true }}" controls="{{ true }}" playsInline="{{ true }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block"></video>
+                      </sc-if>
+                      <sc-if value="{{ f.isPhoto }}" hint-placeholder-val="{{ false }}">
+                        <div role="img" aria-label="{{ f.alt }}" style="position:absolute;inset:0;background-image:{{ f.bgPhoto }};background-size:cover;background-position:center"></div>
+                      </sc-if>
+                      <sc-if value="{{ f.isSlot }}" hint-placeholder-val="{{ true }}">
+                        <image-slot id="{{ f.id }}" shape="rect" radius="0" fit="cover" placeholder="{{ f.ph }}" style="position:absolute;inset:0"></image-slot>
+                      </sc-if>
+                    </div>
+                    <figcaption style="font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:#7E8A93">{{ f.cap }}</figcaption>
+                  </figure>
+                </sc-for>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ r.hasProjects }}" hint-placeholder-val="{{ false }}">
+              <div style="margin-top:14px;display:flex;flex-direction:column;gap:2px">
+                <div style="font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#7E8A93;padding-bottom:12px">{{ r.projectsLabel }}</div>
+                <sc-for list="{{ r.projects }}" as="p" hint-placeholder-count="3">
+                  <div style="border-top:1px solid rgba(233,238,241,.1);padding:18px 0;display:grid;grid-template-columns:52px minmax(0,1fr);gap:clamp(10px,2vw,28px)">
+                    <span style="font-size:12px;letter-spacing:.09em;color:#FF8A5B">{{ p.tag }}</span>
+                    <div style="display:flex;flex-direction:column;gap:8px;min-width:0">
+                      <h3 style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(15px,1.5vw,19px);line-height:1.25;letter-spacing:-.01em;color:#E9EEF1">{{ p.title }}</h3>
+                      <p style="margin:0;font-size:13.5px;line-height:1.7;color:#AAB4BB;text-wrap:pretty">{{ p.body }}</p>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+          </div>
+        </article>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="writing" style="position:relative;z-index:2;background:#0A0C10;border-top:1px solid rgba(233,238,241,.14);padding:clamp(56px,11vh,110px) clamp(16px,4vw,40px)">
+    <div style="max-width:1440px;margin:0 auto;display:flex;flex-direction:column;gap:clamp(20px,4vh,40px)">
+      <div style="font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:#7E8A93">Selected publications</div>
+      <div style="display:flex;flex-direction:column">
+        <sc-for list="{{ pubs }}" as="p" hint-placeholder-count="4">
+          <a href="{{ p.href }}" target="{{ p.target }}" rel="noopener" style="border-top:1px solid rgba(233,238,241,.12);padding:20px 0;display:flex;flex-wrap:wrap;gap:clamp(8px,3vw,40px);align-items:flex-start;color:#E9EEF1" style-hover="background:rgba(72,214,196,.05)">
+            <span style="flex:1 1 110px;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#FF8A5B">{{ p.tag }}</span>
+            <span style="flex:999 1 320px;min-width:0;display:flex;flex-direction:column;gap:7px">
+              <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(15px,1.6vw,20px);line-height:1.3;letter-spacing:-.015em;text-wrap:pretty">{{ p.title }}</span>
+              <span style="font-size:11.5px;line-height:1.6;color:#7E8A93">{{ p.venue }}</span>
+            </span>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="position:relative;z-index:2;background:#101318;border-top:1px solid rgba(233,238,241,.14);padding:clamp(60px,13vh,140px) clamp(16px,4vw,40px) clamp(28px,5vh,48px)">
+    <div style="max-width:1440px;margin:0 auto;display:flex;flex-direction:column;gap:clamp(28px,6vh,60px)">
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(34px,7.5vw,108px);line-height:.92;letter-spacing:-.04em;color:#F4F8FA;max-width:22ch;text-wrap:balance">Building something hard? Get in touch.</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:clamp(16px,4vw,48px);border-top:1px solid rgba(233,238,241,.14);padding-top:22px">
+        <a href="mailto:stephanieogara1@gmail.com" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(16px,2vw,24px);letter-spacing:-.01em;color:#E9EEF1">stephanieogara1@gmail.com</a>
+        <a href="https://www.linkedin.com/" target="_blank" rel="noopener" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(16px,2vw,24px);letter-spacing:-.01em;color:#E9EEF1">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;particleCount&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:1500,&quot;min&quot;:300,&quot;max&quot;:4000,&quot;step&quot;:100,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Flow field&quot;},&quot;showFigures&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Layout&quot;}}">
+class Component extends DCLogic {
+  state = { roles: [], pubs: [], src: 1, visc: 0.12, touched: false };
+
+  constructor(p) {
+    super(p);
+    this.rootRef = React.createRef();
+    this.canvasRef = React.createRef();
+  }
+
+  componentDidMount() {
+    import('./content.js').then(m => this.setState({ roles: m.roles, pubs: m.pubs }));
+    this.startField();
+    this.observe();
+  }
+
+  componentDidUpdate() { this.observe(); }
+
+  componentWillUnmount() {
+    cancelAnimationFrame(this._raf);
+    if (this._onMove) window.removeEventListener('pointermove', this._onMove);
+    if (this._onFirst) window.removeEventListener('pointermove', this._onFirst);
+    if (this._ro) this._ro.disconnect();
+    if (this._onResize) window.removeEventListener('resize', this._onResize);
+  }
+
+  observe() {
+    const root = this.rootRef.current; if (!root) return;
+    const els = [...root.querySelectorAll('.rvl')].filter(e => !e.dataset.seen);
+    if (!els.length) return;
+    const io = new IntersectionObserver(es => {
+      es.forEach(e => {
+        if (!e.isIntersecting) return;
+        e.target.dataset.seen = '1';
+        requestAnimationFrame(() => { e.target.style.opacity = '1'; e.target.style.transform = 'none'; });
+        io.unobserve(e.target);
+      });
+    }, { threshold: .12, rootMargin: '0px 0px -8% 0px' });
+    els.forEach(e => io.observe(e));
+  }
+
+  startField() {
+    const cv = this.canvasRef.current; if (!cv) return;
+    const ctx = cv.getContext('2d', { alpha: false });
+
+    // Boussinesq convection on a staggered-free MAC-style grid:
+    // semi-Lagrangian advection, buoyancy source from the temperature
+    // field, and Jacobi pressure projection to keep the flow incompressible.
+    const NX = 80;
+    let NY = 48, w = 0, h = 0, cell = 1, ox = 0, oy = 0, innerW = 0, innerH = 0;
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    const DT = 1 / 60, BETA = 8.5, DAMP = 0.985, TDECAY = 0.9975, ITER = 18;
+    const ADV = DT * 60 * 0.16;
+
+    let u, v, u0, v0, T, T0, p, div, us, vs, parts = [];
+    const COUNT = Math.max(200, this.props.particleCount ?? 4200);
+    const ptr = { x: -1e4, y: -1e4, inside: false, px: -1e4, py: -1e4 };
+
+    const IX = (i, j) => i + j * NX;
+    const alloc = () => {
+      const n = NX * NY;
+      u = new Float32Array(n); v = new Float32Array(n);
+      u0 = new Float32Array(n); v0 = new Float32Array(n);
+      T = new Float32Array(n); T0 = new Float32Array(n);
+      p = new Float32Array(n); div = new Float32Array(n);
+      us = new Float32Array(n); vs = new Float32Array(n);
+    };
+    const seed = () => {
+      parts = Array.from({ length: COUNT }, () => ({
+        x: Math.random() * NX, y: Math.random() * NY, life: 200 + Math.random() * 600
+      }));
+    };
+
+    const size = () => {
+      if (cv.clientWidth < 2 || cv.clientHeight < 2) return;
+      w = cv.clientWidth; h = cv.clientHeight;
+      // the fluid lives inside a closed vessel inset from the canvas edge
+      const inset = 1;
+      innerW = Math.max(40, w - inset * 2);
+      cell = innerW / NX;
+      NY = Math.max(12, Math.round((h - inset * 2) / cell));
+      innerH = NY * cell;
+      ox = Math.round((w - innerW) / 2);
+      oy = Math.round((h - innerH) / 2);
+      cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.fillStyle = '#07080B'; ctx.fillRect(0, 0, w, h);
+      alloc(); seed();
+    };
+    size();
+
+    this._onResize = () => size();
+    window.addEventListener('resize', this._onResize);
+    if (typeof ResizeObserver !== 'undefined') {
+      this._ro = new ResizeObserver(() => size());
+      this._ro.observe(cv);
+    }
+    this._onMove = e => {
+      const r = cv.getBoundingClientRect();
+      const sc = r.width / Math.max(w, 1);
+      const x = (e.clientX - r.left - ox * sc) / (cell * sc);
+      const y = (e.clientY - r.top - oy * sc) / (cell * sc);
+      ptr.inside = x >= 0 && x <= NX && y >= 0 && y <= NY;
+      ptr.px = ptr.x; ptr.py = ptr.y; ptr.x = x; ptr.y = y;
+    };
+    window.addEventListener('pointermove', this._onMove, { passive: true });
+
+    this._onFirst = () => {
+      if (!ptr.inside) return;
+      window.removeEventListener('pointermove', this._onFirst);
+      this.setState({ touched: true });
+    };
+    window.addEventListener('pointermove', this._onFirst, { passive: true });
+
+    const sample = (fld, x, y) => {
+      if (x < 0.5) x = 0.5; if (x > NX - 1.5) x = NX - 1.5;
+      if (y < 0.5) y = 0.5; if (y > NY - 1.5) y = NY - 1.5;
+      const i = Math.floor(x), j = Math.floor(y), s = x - i, t = y - j;
+      const a0 = fld[IX(i, j)], a1 = fld[IX(i + 1, j)];
+      const b0 = fld[IX(i, j + 1)], b1 = fld[IX(i + 1, j + 1)];
+      return (a0 * (1 - s) + a1 * s) * (1 - t) + (b0 * (1 - s) + b1 * s) * t;
+    };
+
+    const snap = () => { us.set(u); vs.set(v); };
+
+    // viscous diffusion: Jacobi sweeps on each velocity component
+    const diffuse = nu => {
+      if (nu <= 0) return;
+      const a = nu * 6;
+      const c = 1 / (1 + 4 * a);
+      for (let n = 0; n < 6; n++) {
+        u0.set(u); v0.set(v);
+        for (let j = 1; j < NY - 1; j++) for (let i = 1; i < NX - 1; i++) {
+          const k = IX(i, j);
+          u[k] = (us[k] + a * (u0[k - 1] + u0[k + 1] + u0[IX(i, j - 1)] + u0[IX(i, j + 1)])) * c;
+          v[k] = (vs[k] + a * (v0[k - 1] + v0[k + 1] + v0[IX(i, j - 1)] + v0[IX(i, j + 1)])) * c;
+        }
+      }
+    };
+
+    const advect = (src, dst, dt) => {
+      for (let j = 1; j < NY - 1; j++) for (let i = 1; i < NX - 1; i++) {
+        const k = IX(i, j);
+        dst[k] = sample(src, i - u[k] * dt, j - v[k] * dt);
+      }
+    };
+
+    const project = () => {
+      for (let j = 1; j < NY - 1; j++) for (let i = 1; i < NX - 1; i++) {
+        div[IX(i, j)] = -0.5 * (u[IX(i + 1, j)] - u[IX(i - 1, j)] + v[IX(i, j + 1)] - v[IX(i, j - 1)]);
+        p[IX(i, j)] = 0;
+      }
+      for (let n = 0; n < ITER; n++) {
+        for (let j = 1; j < NY - 1; j++) for (let i = 1; i < NX - 1; i++) {
+          p[IX(i, j)] = (div[IX(i, j)] + p[IX(i - 1, j)] + p[IX(i + 1, j)] + p[IX(i, j - 1)] + p[IX(i, j + 1)]) * 0.25;
+        }
+      }
+      for (let j = 1; j < NY - 1; j++) for (let i = 1; i < NX - 1; i++) {
+        u[IX(i, j)] -= 0.5 * (p[IX(i + 1, j)] - p[IX(i - 1, j)]);
+        v[IX(i, j)] -= 0.5 * (p[IX(i, j + 1)] - p[IX(i, j - 1)]);
+      }
+      // Free-slip vessel: the wall blocks flow THROUGH it but not ALONG it, so a
+      // plume striking the ceiling turns and runs horizontally, then down the
+      // sides. The tangential component is carried out to the wall row itself.
+      for (let j = 0; j < NY; j++) {
+        u[IX(0, j)] = 0; v[IX(0, j)] = v[IX(1, j)];
+        u[IX(NX - 1, j)] = 0; v[IX(NX - 1, j)] = v[IX(NX - 2, j)];
+      }
+      for (let i = 0; i < NX; i++) {
+        v[IX(i, 0)] = 0; u[IX(i, 0)] = u[IX(i, 1)];
+        v[IX(i, NY - 1)] = 0; u[IX(i, NY - 1)] = u[IX(i, NY - 2)];
+      }
+    };
+
+    const brush = (cx, cy, amount, radius) => {
+      const r2 = radius * radius;
+      const i0 = Math.max(1, Math.floor(cx - radius)), i1 = Math.min(NX - 2, Math.ceil(cx + radius));
+      const j0 = Math.max(1, Math.floor(cy - radius)), j1 = Math.min(NY - 2, Math.ceil(cy + radius));
+      for (let j = j0; j <= j1; j++) for (let i = i0; i <= i1; i++) {
+        const d2 = (i - cx) * (i - cx) + (j - cy) * (j - cy);
+        if (d2 > r2) continue;
+        const fall = 1 - d2 / r2;
+        const k = IX(i, j);
+        T[k] = Math.max(-1, Math.min(1, T[k] + amount * fall));
+      }
+    };
+
+    // The container starts isothermal, so there is no buoyancy and almost no
+    // motion: only a faint large-scale stirring that never fully dies out.
+    // All structure comes from heat or cold the visitor adds.
+    const stir = () => {
+      for (let j = 1; j < NY - 1; j++) for (let i = 1; i < NX - 1; i++) {
+        const k = IX(i, j), sx = i / NX, sy = j / NY;
+        u[k] += Math.sin(sy * 6.1 + tm * 0.05) * Math.cos(sx * 4.3 - tm * 0.03) * 0.0011;
+        v[k] += Math.cos(sx * 5.2 - tm * 0.04) * Math.sin(sy * 4.7 + tm * 0.035) * 0.0009;
+      }
+    };
+    let tm = 0;
+    const step = () => {
+      tm += DT;
+
+      // pointer as a heat or cold source, with the fluid dragged along by the stroke
+      const src = this.state.src ?? 1;
+      if (ptr.inside && Math.abs(src) > 0.04) {
+        brush(ptr.x, ptr.y, src * 0.09, 3.4);
+        const dx = ptr.x - ptr.px, dy = ptr.y - ptr.py;
+        if (Math.abs(dx) + Math.abs(dy) < 20) {
+          const i = Math.max(1, Math.min(NX - 2, Math.round(ptr.x)));
+          const j = Math.max(1, Math.min(NY - 2, Math.round(ptr.y)));
+          u[IX(i, j)] += dx * 0.12; v[IX(i, j)] += dy * 0.12;
+        }
+        ptr.px = ptr.x; ptr.py = ptr.y;
+      }
+
+      stir();
+
+      // buoyancy: parcels warmer than ambient accelerate upward, cooler ones sink
+      for (let j = 1; j < NY - 1; j++) for (let i = 1; i < NX - 1; i++) {
+        const k = IX(i, j);
+        v[k] -= BETA * T[k] * DT;
+        u[k] *= DAMP; v[k] *= DAMP;
+      }
+
+      u0.set(u); v0.set(v);
+      advect(u0, u, ADV);
+      advect(v0, v, ADV);
+
+      snap();
+      diffuse(this.state.visc ?? 0.12);
+
+      project();
+
+      T0.set(T);
+      advect(T0, T, ADV);
+      // diffusion through the interior, plus slow relaxation back to ambient
+      T0.set(T);
+      for (let j = 1; j < NY - 1; j++) for (let i = 1; i < NX - 1; i++) {
+        const k = IX(i, j);
+        T[k] = (T0[k] * 0.9 + (T0[k - 1] + T0[k + 1] + T0[IX(i, j - 1)] + T0[IX(i, j + 1)]) * 0.025) * TDECAY;
+      }
+
+      ctx.fillStyle = 'rgba(7,8,11,0.055)';
+      ctx.fillRect(ox, oy, innerW, innerH);
+
+      for (const pt of parts) {
+        const uu = sample(u, pt.x, pt.y), vv = sample(v, pt.x, pt.y);
+        pt.x += uu * DT * 9; pt.y += vv * DT * 9;
+        pt.life -= 1;
+        if (pt.x < 1) pt.x = 1; if (pt.x > NX - 2) pt.x = NX - 2;
+        if (pt.y < 1) pt.y = 1; if (pt.y > NY - 2) pt.y = NY - 2;
+        if (pt.life < 0) {
+          pt.x = 1 + Math.random() * (NX - 3);
+          pt.y = 1 + Math.random() * (NY - 3);
+          pt.life = 240 + Math.random() * 560;
+        }
+        const t = sample(T, pt.x, pt.y);
+        const k = Math.min(1, Math.abs(t) * 2.1);
+        let r, g, b;
+        if (t >= 0) { r = 150 + 105 * k; g = 168 - 30 * k; b = 178 - 87 * k; }
+        else { r = 150 - 71 * k; g = 168 + 11 * k; b = 178 + 77 * k; }
+        const speed = Math.min(1, Math.hypot(uu, vv) / 9);
+        ctx.fillStyle = 'rgba(' + (r | 0) + ',' + (g | 0) + ',' + (b | 0) + ',' + (0.45 + k * 0.45 + speed * 0.2) + ')';
+        const s = 1.7 + k * 1.4;
+        ctx.fillRect(ox + pt.x * cell, oy + pt.y * cell, s, s);
+      }
+
+      // clear the band outside the vessel so nothing reads as escaping it
+      ctx.fillStyle = '#07080B';
+      ctx.fillRect(0, 0, w, oy);
+      ctx.fillRect(0, oy + innerH, w, h - oy - innerH);
+      ctx.fillRect(0, oy, ox, innerH);
+      ctx.fillRect(ox + innerW, oy, w - ox - innerW, innerH);
+
+      ctx.strokeStyle = 'rgba(233,238,241,0.3)';
+      ctx.lineWidth = 1;
+      ctx.strokeRect(ox + 0.5, oy + 0.5, innerW - 1, innerH - 1);
+      ctx.strokeStyle = 'rgba(233,238,241,0.5)';
+      const tick = Math.min(16, innerW * 0.03);
+      const corners = [[ox, oy, 1, 1], [ox + innerW, oy, -1, 1], [ox, oy + innerH, 1, -1], [ox + innerW, oy + innerH, -1, -1]];
+      for (const [cx, cy, sx, sy] of corners) {
+        ctx.beginPath();
+        ctx.moveTo(cx + 0.5 + sx * tick, cy + 0.5);
+        ctx.lineTo(cx + 0.5, cy + 0.5);
+        ctx.lineTo(cx + 0.5, cy + 0.5 + sy * tick);
+        ctx.stroke();
+      }
+
+      this._raf = requestAnimationFrame(step);
+    };
+    this._raf = requestAnimationFrame(step);
+  }
+
+  renderVals() {
+    const roles = this.state.roles.map(r => {
+      // an entry can pull a single figure alongside its paragraph
+      const side = (r.figures || []).find(fg => fg.side && fg.photo);
+      const rest = (r.figures || []).filter(fg => fg !== side);
+      return {
+      ...r,
+      hasProjects: r.projects && r.projects.length ? true : false,
+      hasFigures: this.props.showFigures === false ? false : (r.figures && r.figures.length ? true : false),
+      figWrap: side ? 'wrap' : 'nowrap',
+      hasFiguresRight: !!side,
+      rightBg: side && side.photo ? 'url("' + side.photo + '")' : undefined, rightAlt: side && side.alt,
+      rightCap: side && side.cap, rightRatio: (side && side.ratio) || '3/4',
+      rightW: (side && side.w) || '190px',
+      figures: rest.map(fg => ({ ...fg, isVideo: !!fg.video, isPhoto: !!fg.photo, bgPhoto: fg.photo ? 'url("' + fg.photo + '")' : undefined, isSlot: !fg.video && !fg.photo, maxW: fg.w || '300px' })),
+    };
+    }).map(r => ({ ...r, hasFigures: r.hasFigures && r.figures.length > 0 }));
+    const src = this.state.src ?? 1;
+    const mag = Math.abs(src);
+    const srcLabel = mag <= 0.04 ? 'Off' : (src > 0 ? 'Heat' : 'Cold');
+    const srcColor = mag <= 0.04 ? '#A8B4BB' : (src > 0 ? '#FF8A5B' : '#4FB3FF');
+    const viscPct = Math.round(((this.state.visc ?? 0.12) / 0.4) * 100);
+    return {
+      roles,
+      pubs: this.state.pubs.map(p => ({ ...p, href: p.href || undefined, target: p.href ? '_blank' : undefined })),
+      rootRef: this.rootRef,
+      canvasRef: this.canvasRef,
+      hintOpacity: this.state.touched ? 0 : 1,
+      videoRef: el => { if (el && el.paused) el.play().catch(() => {}); },
+      src, srcLabel, srcColor,
+      viscLabel: viscPct <= 20 ? 'Like water' : (viscPct >= 65 ? 'Like syrup' : 'Moderate'),
+      onSrc: e => this.setState({ src: parseFloat(e.target.value) }),
+      visc: this.state.visc ?? 0.12,
+      onVisc: e => this.setState({ visc: parseFloat(e.target.value) }),
+    };
+  }
+}
+
+</script>
+</body>
+</html>
