@@ -185,9 +185,15 @@ class Component extends DCLogic {
     import('./content.js').then(m => this.setState({ roles: m.roles, pubs: m.pubs }));
     this.startField();
     this.observe();
-    if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(hover: none)').matches) {
+    const coarse = (window.matchMedia && (window.matchMedia('(hover: none)').matches || window.matchMedia('(pointer: coarse)').matches))
+      || (navigator.maxTouchPoints || 0) > 0 || 'ontouchstart' in window;
+    if (coarse) this.setState({ isTouch: true });
+    // and fall back to the first real touch, whatever the media queries claim
+    this._onFirstTouch = () => {
       this.setState({ isTouch: true });
-    }
+      window.removeEventListener('touchstart', this._onFirstTouch);
+    };
+    window.addEventListener('touchstart', this._onFirstTouch, { passive: true, once: true });
     this._onScroll = () => {
       const s = window.scrollY > 80;
       if (s !== this.state.scrolled) this.setState({ scrolled: s });
@@ -301,7 +307,7 @@ class Component extends DCLogic {
       ptr.px = ptr.x; ptr.py = ptr.y;
       ptr.inside = true; ptr.held = true;
       ptr.pulse = 3;
-      if (!this.state.touched) this.setState({ touched: true });
+      if (!this.state.touched) this.setState({ touched: true, isTouch: e.pointerType === 'touch' ? true : this.state.isTouch });
     };
     this._onUp = () => { ptr.held = false; if (ptr.touch) ptr.inside = false; };
     cv.addEventListener('pointerdown', this._onDown, { passive: true });
