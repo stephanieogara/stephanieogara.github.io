@@ -1,9 +1,9 @@
 export const roles = [
-  { id:'flagship', no:'01', org:'Flagship Pioneering', role:'Associate, Company Creation', period:'2026 to present', place:'Cambridge, MA',
+  { id:'flagship', no:'01', org:'Flagship Pioneering', role:'Associate, Origination', period:'2026 to present', place:'Cambridge, MA',
     body:"Drawing on my background as an engineer and researcher, I originate and build new companies at the intersection of AI and physics. My work spans every part of company creation, from the first idea through scientific and commercial strategy, operations, and hiring the early team." },
 
-  { id:'caltech', no:'02', org:'Caltech', role:'Ph.D., Mechanical Engineering \u00b7 NSF Fellow', period:'2020 to 2025', place:'Pasadena, CA',
-    body:"During my Ph.D., I investigated a new drug delivery technique using fluid dynamics, heat transfer, and physics-informed machine learning. Periodic injections in the eye are the cornerstone treatment for several vision-threatening diseases, including wet age-related macular degeneration and diabetic retinopathy, but effectiveness varies and patients often continue to lose their vision. One likely cause for poor treatment outcomes is inefficient delivery: the drug has a limited half-life and may not reach its target in time. I asked whether gentle heating could create a buoyancy differential that moves medicine through the eye more quickly.",
+  { id:'caltech', no:'02', org:'Caltech', role:'Ph.D., Mechanical Engineering \u00b7 National Science Foundation Graduate Research Fellow', period:'2020 to 2025', place:'Pasadena, CA',
+    body:"During my PhD, I investigated a new drug delivery technique using fluid dynamics, heat transfer, and physics-informed machine learning. Periodic injections in the eye are the cornerstone treatment for several vision-threatening diseases, including wet age-related macular degeneration and diabetic retinopathy. However, effectiveness varies, and patients often continue to lose their vision. One likely cause for poor treatment outcomes is inefficient delivery: the drug has a limited half-life and may not reach its target in time. I asked whether gentle heating could create a buoyancy differential that moves medicine through the eye more quickly.",
     figuresLabel:'FIGURES',
     figures:[
       { id:'fa-caltech-video', ratio:'1/1', w:'340px', video:'./caltech-pathlines.mp4', cap:'Two-dimensional particle pathlines, overlaid experiment images' },
