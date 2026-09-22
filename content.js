@@ -33,7 +33,7 @@ export const roles = [
     ] },
 
   { id:'columbia', no:'06', org:'Columbia University', role:'B.S., Mechanical Engineering', period:'2014 to 2016', place:'New York, NY',
-    body:"I earned my B.S. in Mechanical Engineering from Columbia, where I built the engineering foundation I still rely on today. I also did research on manufacturing solar panels to optimize for energy absorption, which ignited my passion for research." },
+    body:"I earned my B.S. in Mechanical Engineering from Columbia, where I built the engineering foundation I still rely on today. I also conducted research on manufacturing solar panels to increase cell efficiency, which ignited my love of research." },
 
   { id:'coast-guard', no:'07', org:'U.S. Coast Guard Academy', role:'Cadet', period:'2012 to 2014', place:'New London, CT',
     body:"I started college as a cadet at the United States Coast Guard Academy. Early on, I learned discipline, service, and teamwork.",
