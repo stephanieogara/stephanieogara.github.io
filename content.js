@@ -12,7 +12,7 @@ export const roles = [
     projectsLabel:'THREE PARTS OF THE THESIS',
     projects:[
       { tag:'1', title:'An optically matched eye model',
-        body:"Quantitative measurement of fluid motion first required an eye model that could be imaged without distortion. I ran an optical distortion study to identify a vitreous substitute matching both the viscosity of the human vitreous and the refractive index of the model." },
+        body:"Accurate quantitative measurements of fluid motion first required an eye model that could be imaged with minimal distortion. I ran an optical distortion study to identify a vitreous substitute matching both the viscosity of the human vitreous and the refractive index of the model." },
       { tag:'2', title:'Measuring how heat moves fluid inside the eye',
         body:"Using that model, I mapped how gentle heating sets fluid in motion. I ran volumetric three-dimensional flow measurement experiments to see how different heating parameters change the flow, and used Lagrangian particle tracking to understand how a drug could be directed toward its target." },
       { tag:'3', title:'A physics-informed model to predict the flow',
